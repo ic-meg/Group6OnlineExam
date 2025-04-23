@@ -1,0 +1,79 @@
+nav {
+    display: flex;
+    align-items: center;
+    background: white;
+    height: 60px;
+    position: relative;
+}
+
+.icon {
+    cursor: pointer;
+    margin-right: 50px;
+    position: relative;
+}
+
+.icon img {
+    width: 26px;
+    filter: invert(1);
+}
+
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: none;
+}
+
+.notifications {
+    width: 300px;
+    opacity: 0;
+    position: absolute;
+    top: 63px;
+    right: 62px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    display: none;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.notifications h2 {
+    font-size: 14px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    color: #999;
+}
+
+.notifications-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 6px 9px;
+    cursor: pointer;
+}
+
+.notifications-item:hover {
+    background-color: #448b4f;
+    color: #fff;
+}
+
+.notifications-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 9px;
+    border-radius: 50%;
+}
+
+.notifications-item .text h4 {
+    color: #777;
+    font-size: 16px;
+    margin-top: 3px;
+}
+
+.notifications-item .text p {
+    color: #aaa;
+    font-size: 12px;
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website with Sidebar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"
+     />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"
+    />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat Alternates:wght@400&display=swap"
+    />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montagu Slab:wght@700&display=swap"
+    />
+    <style>
+        .logo-and-campus {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .school-logo {
+            width: 50px;
+            height: auto;
+            margin-right: 10px; /* Add margin to separate the logo from the text */
+        }
+
+        .logo-and-campus h4 {
+            margin: 0;
+            font-size: 16px; /* Adjust font size as needed */
+        }
+        .bg-dark-green{
+            background-color: #01343E;
+        }
+        .sidebar {
+            height: 100vh;
+            color: white;
+            font-family: var(--font-montserrat);
+        }
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 10px;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background: #495057;
+        }
+
+        .header {
+            background: #f5f5f5;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+            color:black;
+            font: var();
+            padding: 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .logout-button {
+            font-family: var(--font-montserrat);
+            padding: 8px 16px;
+            background-color: #FFCD4D;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            }
+  
+            .logout-button:hover {
+                background-color: rgb(129, 122, 122);
+                color: white;
+            }
+            .header-icons img {
+                width: 37px;
+                height: 37px;
+                margin-bottom: 5px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: absolute;
+                left: -250px;
+                width: 250px;
+                transition: all 0.3s;
+            }
+            .sidebar.show {
+                left: 0;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .btn{
+                background-color: #01343E;
+
+            }
+
+   
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="sidebar bg-dark-green" id="sidebar">
+            <div class="logo-and-campus">
+                <img src="CvSU_LOGO.png" alt="School Logo" class="school-logo" onclick="toggleSidebar()">
+                <h4 class="SchoolName" style="margin-left: -10px;">Cavite State University - Imus Campus</h4>
+               
+            </div>
+            <a href="#">
+                <img src="./public/home1.svg" alt="Home Icon" class="menu-icon">
+                Dashboard
+            </a>
+            <a href="#">
+                <img src="./public/vector2.svg" alt="About Icon" class="menu-icon">
+               Profile
+            </a>
+            <a href="#">
+                <img src="./public/union1.svg" alt="Services Icon" class="menu-icon">
+                Exam Set
+            </a>
+            <a href="#">
+                <img src="./public/icon25.svg" alt="Contact Icon" class="menu-icon">
+                Manage Examinee
+            </a>
+        </div>
+        <div class="flex-grow-1">
+            <div class="header d-flex justify-content-between align-items-center">
+                <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
+                <h4>Header</h4>
+                <div class="header-icons">
+                    <img src="icons8-notification-48.png" alt="Notification Icon" class="notification-icon">
+                    <button class="logout-button">Log out</button>
+                    
+                </div>
+                
+            </div>
+            <div class="content">
+
+            </div>
+        </div>
+  
+
+    <div class="classmates-content">
+        <!-- CONTENT GOES HERE -->
+  
+    </div>
+</div>
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Background</title>
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
+    
+    
+    
+</head>
+<body>
+<?php 
+    include "Header.php";
+?>
+            <div class="content" id="content">
+                
+                <div class="container"><br>
+                <p style="color: red;"><b>* -required fields</b></p>
+                    <p class="mt-4" style="font-size: 20px;"><b>Family Background</b></p> <br>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="fatherName">Father's Name</label>
+                                <input type="text" class="form-control" id="fatherName" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fatherContact">Contact Number</label>
+                                <input type="text" class="form-control" id="fatherContact" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fatherOccupation">Occupation</label>
+                                <input type="text" class="form-control" id="fatherOccupation" placeholder="" required>
+                            </div>
+                        </div><hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="motherName">Mother's Name</label>
+                                <input type="text" class="form-control" id="motherName" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="motherContact">Contact Number</label>
+                                <input type="text" class="form-control" id="motherContact" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="motherOccupation">Occupation</label>
+                                <input type="text" class="form-control" id="motherOccupation" placeholder="" required>
+                            </div>
+                        </div><hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="income">*Estimated Monthly Family Income</label>
+                                <select id="income" class="form-control" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="below 10,000">below 10,000</option>
+                                    <option value="10,000 - 20,000">10,000 - 20,000</option>
+                                    <option value="20,000 - 30,000">20,000 - 30,000</option>
+                                    <option value="30,000 - 40,000">30,000 - 40,000</option>
+                                    <option value="40,000 - 50,000">40,000 - 50,000</option>
+                                    <option value="above 50,000">above 50,000</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="siblings">Number of siblings</label>
+                                <input type="number" class="form-control" id="siblings" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="birthOrder">Birth Order</label>
+                                <select id="birthOrder" class="form-control" required>
+                                    <option value="" disabled selected></option>
+                                    <option>Eldest</option>
+                                    <option>Middle</option>
+                                    <option>Youngest</option>
+                                    <option>Only Child</option>
+                                </select>
+                            </div>
+                        </div><hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="guardianName">*Guardian's Name</label>
+                                <input type="text" class="form-control" id="guardianName" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="guardianContact">*Contact Number</label>
+                                <input type="text" class="form-control" id="guardianContact" placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="guardianOccupation">*Occupation</label>
+                                <input type="text" class="form-control" id="guardianOccupation" placeholder="" required>
+                            </div>
+                        </div>
+                        <p class="mt-4" style="font-size: 20px;"><b>Additional Family Information</b></p>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="soloParent">Are you a solo parent?</label>
+                                <select id="soloParent" class="form-control" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="familyAbroad">Do you have family members working abroad?</label>
+                                <select id="familyAbroad" class="form-control" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option>No</option>
+                                    <option>Yes</option>
+                                </select>
+                            </div>
+                        </div><hr><br>
+                        <button type="submit" class="btn btn-success">Mark as complete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>

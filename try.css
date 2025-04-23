@@ -1,0 +1,338 @@
+   /* Styling for .container class */
+   .container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Styling for .grid class */
+.ctas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/* Styling for button elements inside .grid */
+.ctas button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styling for # start button */
+#btn-start {
+    background-color: green;
+    color: white;
+}
+
+/* Styling for #testEnd button */
+#btn-stop {
+    background-color: red;
+    color: white;
+}
+
+/* Styling for .flex class */
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for #ap-test-proctoring-status element */
+#ap-test-proctoring-status {
+    margin-bottom: 2px;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-left: 14px;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% {
+        opacity: 1;
+   }
+    50% {
+        opacity: 0.5;
+   }
+    100% {
+        opacity: 1;
+   }
+}
+
+/* Styling for #proctor-feedback element */
+#proctor-feedback {
+    margin-bottom: 2px;
+    background: none;
+    border-radius: 9999px;
+    transition: all 0.3s;
+    color: #ff9800;
+    font-weight: bolder;
+    font-size: 0.75rem;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Styling for #test-attempt-report container */
+#test-attempt-report {
+    display: none;
+}
+
+/* Styling for #ap-test-report-overview element */
+#ap-test-report-overview {
+    max-width: 72rem;
+    margin: 0 auto;
+    background-image: linear-gradient( to right, var(--gradient-from), var(--gradient-to) );
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for .flex element inside #test-attempt-report container */
+#test-attempt-report .flex {
+    margin-top: 1rem;
+}
+
+/* Styling for .tab-button class */
+.tab-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Styling for #tab-1 button */
+
+/* Styling for #tab-1-content and #tab-2-content elements */
+#tab-1-content, #tab-2-content {
+    max-width: 72rem;
+    margin: 0 auto;
+    background-image: linear-gradient( to left, var(--gradient-from), var(--gradient-to) );
+    padding: 10px;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for .max-w-5xl class */
+.max-w-5xl {
+    max-width: 72rem;
+}
+
+/* Styling for h1 tag */
+.container h1 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+/* Styling for .text-2xl class */
+.text-2xl {
+    font-size: 1.25rem;
+}
+
+/* Styling for .text-3xl class */
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+/* Styling for .text-center class */
+.text-center {
+    text-align: center;
+}
+
+/* Styling for .my-4 class */
+.my-4 {
+    margin: 1rem 0;
+}
+
+/* Styling for .bg-gradient-to-l class */
+.bg-gradient-to-l {
+    background-image: linear-gradient( to left, var(--gradient-from), var(--gradient-to) );
+}
+
+/* Styling for .p-10 class */
+.p-10 {
+    padding: 2.5rem;
+}
+
+/* Styling for .rounded-2xl class */
+.rounded-2xl {
+    border-radius: 2rem;
+}
+
+/* Styling for .shadow-2xl class */
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Styling for .bg-blue-300 class */
+.bg-blue-300 {
+    background-color: #2196f3;
+}
+
+/* Styling for .bg-gray-500 class */
+.bg-gray-500 {
+    background-color: #6b7280;
+}
+
+/* Styling for .text-gray-700 class */
+.text-gray-700 {
+    color: #4b5563;
+}
+
+/* Styling for .text-white class */
+.text-white {
+    color: #ffffff;
+}
+
+   body {
+       margin: 0;
+       font-family: 'Montserrat', sans-serif;
+       background-color: #f8f9fa;
+   }
+
+   .header {
+       background-color: #ffffff;
+       border-bottom: 1px solid #ddd;
+       width: 100%;
+       padding: 15px 20px;
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+       display: flex;
+       align-items: center;
+       position: relative;
+       z-index: 1000;
+   }
+
+   .header-container {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       max-width: 1200px;
+       margin: 0 auto;
+       width: 100%;
+   }
+
+   .header h1 {
+       margin: 0;
+       font-size: 24px;
+       font-weight: 700;
+   }
+
+   .notification-container {
+       position: relative;
+   }
+
+   .notification-btn {
+       background: #007bff;
+       color: #fff;
+       border: none;
+       padding: 12px 20px;
+       border-radius: 5px;
+       cursor: pointer;
+       font-size: 16px;
+       transition: background 0.3s ease;
+   }
+
+   .notification-btn:hover {
+       background: #0056b3;
+   }
+
+   .notification {
+       position: absolute;
+       top: 60px; /* Adjusted to fit below the button */
+       right: 0;
+       background-color: #ffffff;
+       color: #333;
+       padding: 20px;
+       border-radius: 10px;
+       display: none;
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+       border: 2px solid #448b4f; /* Changed border color */
+       z-index: 1000;
+       opacity: 0;
+       transform: translateY(-10px);
+       transition: opacity 0.6s ease, transform 0.6s ease; /* Extended transition duration */
+       width: 350px; /* Set a larger width */
+   }
+
+   .notification.show {
+       display: block;
+       opacity: 1;
+       transform: translateY(0);
+   }
+
+   .close-btn {
+       background: none;
+       border: none;
+       color: #007bff;
+       font-size: 24px;
+       cursor: pointer;
+       position: absolute;
+       top: 10px;
+       right: 15px;
+   }
+
+   .accordion-item {
+       border: 1px solid #ddd;
+       border-radius: 5px;
+       margin-bottom: 10px;
+       overflow: hidden;
+   }
+
+   .accordion-header {
+       background-color: #f8f9fa;
+       padding: 10px;
+       cursor: pointer;
+       border-bottom: 1px solid #ddd;
+       display: flex;
+       align-items: center;
+   }
+
+   .accordion-button {
+       background: none;
+       border: none;
+       font-size: 16px;
+       width: 100%;
+       text-align: left;
+       color: #007bff;
+   }
+
+   .accordion-button img {
+       height: 50px;
+       width: 50px;
+       margin-right: 15px;
+   }
+
+   .accordion-body {
+       padding: 15px;
+       font-size: 16px;
+       color: #333;
+   }
+
+   .accordion-body ul {
+       list-style-type: none;
+       padding-left: 0;
+   }
+
+   .accordion-body ul li {
+       margin-bottom: 5px;
+   }
+
+   @media (max-width: 768px) {
+       .header-container {
+           flex-direction: column;
+           align-items: flex-start;
+       }
+
+       .header h1 {
+           font-size: 20px;
+       }
+
+       .notification-btn {
+           margin-top: 10px;
+       }
+   }

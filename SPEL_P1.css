@@ -1,0 +1,478 @@
+body {
+  font-family: 'Montserrat', sans-serif; /* Set the default font family */
+  overflow-x: hidden; /* Remove horizontal scrollbar */
+}
+
+.logo-and-campus {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.school-logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.logo-and-campus h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.bg-dark-green {
+  background-color: #448b4f;
+}
+
+.sidebar {
+  height: 1000vh;
+  color: white;
+  font-family: var(--font-montserrat);
+  width: 70px; 
+  transition: all 0.2s;
+  position: fixed; 
+  z-index: 1; 
+}
+
+.iconsandLabel {
+  margin-top: 20px;
+}
+
+.sidebar a {
+  color: white;
+  display: block;
+  padding: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, .075);
+  border-right: 5px solid white;
+}
+
+.sidebar.show {
+  width: 250px; 
+}
+
+.flex-grow-1 {
+  margin-left: 70px;
+  transition: margin-left 0.3s;
+}
+
+.content {
+  padding: 20px;
+  transition: margin-left 0.3s;
+  margin-left: 70px;
+}
+
+.content.sidebar-show {
+  margin-left: calc(70px + 200px);
+  transition: margin-left 0.3s ease;
+}
+
+.flex-grow-1 {
+  margin-left: 0; /* Remove or adjust if there's a specific margin causing the issue */
+  transition: margin-left 0.3s;
+}
+
+.header {
+  background: #f5f5f5;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  color: black;
+  padding: 10px 20px; /* Increase padding if needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure header spans the entire width */
+}
+
+
+
+.header h4 {
+  margin-left: 70px;
+  font-weight: 500;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.notification-icon {
+  width: 37px;
+  height: 37px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.Btn {
+  --black: #000000;
+  --ch-black: #141414;
+  --eer-black: #1b1b1b;
+  --night-rider: #FFCD4D;
+  --white: #ffffff;
+  --af-white: black;
+  --ch-white: #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: var(--night-rider);
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: var(--af-white);
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: var(--af-white);
+  font-size: 1em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.menu-label {
+  display: none;
+  vertical-align: middle;
+}
+
+.sidebar.show .menu-label {
+  display: inline;
+}
+
+.vertical-line {
+  width: 12px;
+  height: 75px;
+  background-color: #448b4f;
+  margin-right: 5px;
+}
+
+.header-title {
+  text-align: left;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.header-title p {
+  margin: 0;
+  font-size: 16px;
+  font-style: bold;
+}
+
+.detail {
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+.exam-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 20px;
+}
+
+.exam-header p {
+  font-size: 25px;
+  margin: 0;
+}
+
+/* Position the timer container */
+.timer {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #448b4f;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  position: relative; /* Ensure timer is positioned relative */
+  z-index: 1; /* Ensure it's above other content */
+}
+
+/* Fixed position for timer when scrolling */
+.fixed-timer {
+  position: fixed;
+  top: 70px; /* Adjust top position as needed */
+  right: 20px; /* Adjust right position as needed */
+  z-index: 1000;
+}
+
+
+
+
+
+.question-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.question-number {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.question-text {
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.choices {
+  list-style: none;
+  padding: 0;
+  
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-flex;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 15px;
+  color: black;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+}
+
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  background-color: #49973C;
+  border-color: black;
+  transform: scale(0.8);
+  box-shadow: 0 0 20px #63c053;
+}
+
+.radio-button__input:checked + .radio-button__label {
+  color: #49973C;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: scale(1.2);
+  border-color: #49973C;
+  box-shadow: 0 0 20px #63c053;
+}
+
+
+
+.choices li {
+  display: inline-block;
+  width: 45%;
+  margin-bottom: 10px;
+}
+
+.choices input[type="radio"] {
+  margin-right: 10px;
+}
+
+.main-exam-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.exam-instructions {
+  background-color: #F3FFF4;
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/*Navigation Button*/
+.back-button, .next-button {
+  padding: 10px 20px;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #FFCD4D;
+  position: relative;
+  font-weight: 500;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+ 
+.back-button::before, .next-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121;
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+}
+ 
+.back-button:hover, .next-button:hover {
+  color: #FFCD4D;
+}
+ 
+.back-button:hover::before, .next-button:hover::before {
+  width: 100%;
+}
+
+.question-box {
+  background-color: #F3FFF4;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  position: relative; /* Added */
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative; /* Updated */
+  bottom: 0; /* Updated */
+  padding: 0 20px;  /* Adjust as needed */
+}
+
+
+.exam-container {
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+
+
+@media (max-width: 768px) {
+  .sidebar {
+      position: absolute;
+      left: -70px;
+      width: 70px;
+  }
+
+  .sidebar.show {
+      left: 0;
+      width: 250px;
+  }
+
+  .content {
+      margin-left: 0;
+  }
+
+  .content.sidebar-show {
+      margin-left: 200px;
+  }
+
+  .btn {
+      background-color: #448b4f;
+  }
+
+  .btn:hover {
+      background-color: #448b4f;
+  }
+
+  .iconsandLabel {
+      font-family: var(--font-montserrat);
+  }
+}
+

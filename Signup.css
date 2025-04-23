@@ -1,0 +1,134 @@
+.admin-login {
+  width: 100%;
+  background-color: var(--color-white);
+  text-align: center;
+  font-size: var(--font-size-5xl);
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}
+
+
+.imus-campus-scaled-1-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 896px;
+  height: 1022px;
+  object-fit: cover;
+  opacity: 0.9;
+}
+.sign-up1 {
+  margin: 0;
+}
+.please-verify-your,
+.sign-up {
+  position: absolute;
+  top: 283px;
+  left: 1093px;
+  font-size: var(--font-size-21xl);
+  font-weight: 600;
+  display: inline-block;
+  width: 188px;
+  height: 51px;
+}
+.please-verify-your {
+  top: 363px;
+  left: 1088px;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-1600);
+  width: 639px;
+  height: 31px;
+}
+.signup-child {
+  position: absolute;
+  top: 128px;
+  left: 1363px;
+  border-radius: 50%;
+  width: 155px;
+  height: 155px;
+  object-fit: cover;
+}
+.we-encourage-you {
+  position: absolute;
+  top: 407px;
+  left: 1047px;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  display: inline-block;
+  width: 749px;
+  height: 24px;
+}
+.menu-item {
+  position: relative;
+  line-height: 20px;
+}
+.menu-item-container,
+.menu-item-wrapper {
+  position: absolute;
+  border-radius: var(--br-3xs);
+  background-color: var(--color-seagreen-100);
+  height: 78px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-base) var(--padding-2xl);
+  box-sizing: border-box;
+  color: var(--color-white);
+}
+.menu-item-wrapper {
+  top: 595px;
+  left: 1106px;
+  width: 668px;
+}
+.menu-item-container {
+  top: 753px;
+  right: 144px;
+  width: 667px;
+}
+.signup-item {
+  position: absolute;
+  top: 711px;
+  left: 1109px;
+  max-height: 100%;
+  width: 666px;
+}
+.admin-username-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-gainsboro-300);
+  border: 1px solid var(--color-gray-1700);
+  box-sizing: border-box;
+}
+.username {
+  position: absolute;
+  height: 31.13%;
+  width: 30.43%;
+  top: 34.5%;
+  left: 0;
+  display: inline-block;
+}
+.admin-username {
+  position: absolute;
+  top: 473px;
+  left: 1106px;
+  width: 668px;
+  height: 80px;
+  font-size: var(--font-size-4xl);
+}
+.signup {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  height: 1024px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-13xl);
+  color: var(--color-black);
+  font-family: var(--font-montserrat);
+}

@@ -1,0 +1,209 @@
+.logo-and-campus {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.school-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+.logo-and-campus h4 {
+    margin: 0;
+    font-size: 16px; 
+}
+
+.bg-dark-green {
+    background-color: #448b4f;
+}
+
+.sidebar {
+    height: 1000vh;
+    color: white;
+    font-family: var(--font-montserrat);
+    width: 70px; 
+    transition: all 0.2s;
+    position: fixed; 
+    z-index: 1; 
+}
+
+.sidebar a {
+    color: white;
+    display: block;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-right: 5px solid white;
+}
+
+.sidebar.show {
+    width: 250px; 
+}
+
+.header {
+    background: #f5f5f5;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    padding: 10px;
+}
+
+.header h4 {
+    margin-left: 70px;
+}
+
+.content {
+    padding: 20px;
+    transition: margin-left 0.3s;
+    margin-left: 70px;
+}
+
+.content.sidebar-show {
+    margin-left: calc(70px + 200px); 
+    transition: margin-left 0.3s ease;
+}
+
+.logout-button {
+    font-family: var(--font-montserrat);
+    padding: 8px 16px;
+    background-color: #FFCD4D;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+}
+
+.logout-button:hover {
+    background-color: rgb(129, 122, 122);
+    color: white;
+}
+
+.header-icons img {
+    width: 37px;
+    height: 37px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.menu-label {
+    display: none;
+    vertical-align: middle;
+}
+
+.sidebar.show .menu-label {
+    display: inline;
+}
+
+.vertical-line {
+    width: 12px;
+    height: 75px; /* Ensure a visible height */
+    background-color: #448b4f;
+    margin-right: 5px;
+}
+
+.header-title {
+    text-align: left;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Mont;
+}
+
+.header-title p {
+    margin: 0;
+    font-size: 16px;
+    font-style: bold;
+}
+
+.notice-container {
+    display: flex;
+    justify-content: center;
+}
+
+.notice {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+.notice-header {
+    background-color: #448b4f;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    font-family:sans-serif;
+}
+
+.notice-body {
+    padding: 50px;
+    text-align: center;
+}
+
+.notice-icon {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.notice-body h5 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        left: -70px;
+        width: 70px;
+    }
+
+    .sidebar.show {
+        left: 0;
+        width: 250px;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .content.sidebar-show {
+        margin-left: 200px;
+    }
+
+    .btn {
+        background-color: #448b4f;
+    }
+
+    .btn:hover {
+        background-color: #448b4f;
+    }
+
+    .iconsandLabel {
+        font-family: var(--font-montserrat);
+    }
+}

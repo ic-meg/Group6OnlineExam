@@ -1,0 +1,377 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif; /* Set the default font family */
+    overflow-x: hidden; /* Remove horizontal scrollbar */
+}
+
+.logo-and-campus {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.school-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px; 
+    cursor: pointer;
+}
+
+.logo-and-campus h4 {
+    margin: 0;
+    font-size: 16px; 
+}
+
+.bg-dark-green {
+    background-color: #448b4f;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 70px;
+    z-index: 1;
+    background-color: #448b4f;
+    color: white;
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    transition: width 0.3s ease;
+}
+
+.iconsandLabel {
+    margin-top: 20px; /* Adjust spacing */
+}
+
+.sidebar.show {
+    width: 250px; /* Expanded width */
+}
+
+.sidebar a {
+    color: white;
+    display: block;
+    padding: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-right: 5px solid white;
+}
+
+.flex-grow-1 {
+    margin-left: 70px; /* Match the width of sidebar */
+    transition: margin-left 0.3s; /* Smooth transition for content */
+}
+
+
+.content {
+    padding: 20px;
+    transition: margin-left 0.3s;
+    margin: 0;
+}
+
+.content.sidebar-show {
+    margin-left: calc(20px + 200px); 
+    transition: margin-left 0.3s ease;
+}
+
+.header {
+    background: #f5f5f5;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    padding: 10px 20px; /* Increase padding if needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure header spans the entire width */
+}
+
+
+
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+.notification-icon {
+    width: 37px;
+    height: 37px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #FFCD4D;
+    --white: #ffffff;
+    --af-white: black;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--night-rider);
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: var(--af-white);
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--af-white);
+    font-size: 1em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+}
+
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.menu-label {
+    display: none;
+    vertical-align: middle;
+}
+
+.sidebar.show .menu-label {
+    display: inline;
+}
+
+.vertical-line {
+    width: 12px;
+    height: 75px; /* Ensure a visible height */
+    background-color: #448b4f;
+    margin-right: 5px;
+}
+
+.header-title {
+    text-align: left;
+    margin: 0;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header-title p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.exam-notice {
+    margin: 20px auto; /* Center the notice and reduce the top margin */
+    max-width: 800px;
+    text-align: center;
+}
+
+.exam-notice p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.exam-notice h2 {
+    font-weight: bolder;
+}
+
+.exam-categories {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background-color: #D8EADB;
+    padding: 20px;
+}
+
+.category {
+    font-size: 20px;
+    margin: 3px 0;
+    font-weight: 500;
+}
+
+.category-icon {
+    width: 20px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 5px; /* Spacing between icon and category text */
+}
+
+
+.detail {
+    font-size: 16px;
+    margin: 2px 0;
+    font-weight: bold;
+}
+
+.exam-footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #D8EADB;
+    display: inline-block; /* Ensures it wraps tightly around content */
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.exam-footer p {
+    font-weight: bold;
+}
+
+.proceed-button {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #FFCD4D;
+    position: relative;
+    font-weight: 500;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+.proceed-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #212121;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms
+   }
+   
+.proceed-button:hover {
+    color: #FFCD4D;
+   }
+   
+.proceed-button:hover::before {
+    width: 100%;
+}
+
+.exam-notice {
+    margin: 20px auto; /* Center the notice and reduce the top margin */
+    max-width: 100%; /* Adjust maximum width */
+    padding: 0 20px; /* Add padding to the exam notice */
+}
+
+.category,
+.detail {
+    font-size: 16px; /* Adjust font size for smaller screens */
+}
+
+.header-title {
+    text-align: left;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header-title p {
+    margin: 0;
+    font-size: 16px;
+    font-style: bold;
+}
+
+@media (max-width: 768px) {
+    .flex-grow-1 {
+        margin-left: 0; /* Reset margin for main content */
+    }
+
+    .sidebar {
+        position: absolute;
+        left: -70px;
+        width: 70px;
+    }
+
+    .sidebar.show {
+        left: 0;
+        width: 250px;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    .content.sidebar-show {
+        margin-left: 200px;
+    }
+
+    .btn {
+        background-color: #448b4f;
+    }
+
+    .btn:hover {
+        background-color: #448b4f;
+    }
+
+    .iconsandLabel {
+        font-family: var(--font-montserrat);
+    }
+
+}
+

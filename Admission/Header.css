@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif; 
+    overflow-x: hidden; 
+}
+
+.logo-and-campus {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.bg-dark-green {
+    background-color: #448b4f;
+}
+
+.iconsandLabel {
+    margin-top: 20px; 
+}
+
+.logo-and-title {
+    display: flex;
+    align-items: center; /
+}
+
+.school-logo {
+    width: 60px; 
+    height: auto; 
+    margin-right: 10px; 
+}
+
+h4 {
+    margin: 0; 
+    vertical-align: middle; 
+    margin-right: 10px; 
+}
+
+.home {
+    margin: 0; 
+    vertical-align: middle; 
+    margin-top: 5px; /
+    margin-right: 20px; 
+    color: inherit; 
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    padding: 0; 
+}
+
+.header {
+    background: #448B4F;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 10px 20px; /* Increase padding if needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Ensure header spans the entire width */
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+.Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #ffffff;
+    --white: #ffffff;
+    --af-white: black;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--night-rider);
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: var(--af-white);
+  }
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--af-white);
+    font-size: 1em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+    
+}
