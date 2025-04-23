@@ -72,9 +72,13 @@
     require_once 'C:\xampp\htdocs\vendor/autoload.php';
 
     // init configuration
-    $clientID = '110074271515-297btk3p7h8dca392th9gugp0oidocb3.apps.googleusercontent.com';
-    $clientSecret = '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';
-    $redirectUri = 'http://localhost/Group6OnlineExam/Admission/Signin.php';
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); 
+    $dotenv->load();
+    
+    $clientID = $_ENV['GOOGLE_CLIENT_ID'];
+    $clientSecret = $_ENV['GOOGLE_CLIENT_SECRET'];
+    $redirectUri = $_ENV['REDIRECT_URI'];
+    
 
     // create Client Request to access Google API
     $client = new Google_Client();
