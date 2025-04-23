@@ -1,10 +1,37 @@
+ 🎓 Integrated Online Admission and Proctored Examination System
 
-  # Group 6 - Online Entrance Exam
+This project is a complete online solution for managing student admissions and entrance examinations, designed for colleges and universities. It allows students to register, apply for admission, take entrance exams, and be **proctored remotely**, all from a single platform.
 
-  Note: Please ensure you have installed <code><a href="https://nodejs.org/en/download/">nodejs</a></code>
+🖥️ Built using **PHP**, **HTML**, **CSS**, and **SQL**, this system provides both convenience and integrity—ensuring a smooth admission process and secure online testing environment.
 
-  To preview and run the project on your device:
-  1) Open project folder in <a href="https://code.visualstudio.com/download">Visual Studio Code</a>
-  2) In the terminal, run `npm install`
-  3) Run `npm start` to view project in browser
-  
+
+ Features
+
+- 📄 Online Admission  
+  Students can apply online by filling out digital forms.
+
+- 🧪 Entrance Exam Platform
+  Applicants take their entrance exams directly on the system.
+
+- 🕵️ Proctored Examination
+  Remote monitoring during the exam (to prevent cheating).
+
+- 🔐 Secure Login and Session Management
+  Only authorized users can access specific features.
+
+- 📝 Student Records & Exam Result Tracking 
+  Admins can view submissions and generate results.
+
+- 📱 Responsive Design
+  Works on both desktop and mobile devices.
+
+---
+
+ 🧰 Built With
+
+- PHP– Server-side scripting
+- HTML & CSS – UI structure and styling
+- MySQL – Database management
+- JavaScript – Interactivity (optional extensions)
+- SweetAlert2 – Alert dialogs and prompts
+
