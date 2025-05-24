@@ -1,11 +1,9 @@
 <?php
-// Include database connection
 include 'dbconn.php';
 
-// Start session
 session_start();
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['user_email'])) {
     echo 'User not logged in.';
     exit();
@@ -29,13 +27,12 @@ $guardianOccupation = isset($_POST['GuardiansOccupation']) ? htmlspecialchars(tr
 $soloParent = isset($_POST['SoloParent']) ? htmlspecialchars(trim($_POST['SoloParent'])) : '';
 $familyAbroad = isset($_POST['WorkingAbroad']) ? htmlspecialchars(trim($_POST['WorkingAbroad'])) : '';
 
-// Validate input
+
 if (empty($guardianName) || empty($guardianContact) || empty($guardianOccupation) || empty($familyIncome)) {
     echo 'Required fields must be filled out.';
     exit();
 }
 
-// Prepare and execute query to get userID based on email
 $stmt = $conn->prepare("SELECT userID FROM useraccount WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
@@ -45,16 +42,15 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $userID = $row['userID'];
 
-    // Use INSERT ... ON DUPLICATE KEY UPDATE to handle both insert and update
+
     $stmt = $conn->prepare("INSERT INTO family_background (userID, FathersName, FathersContact, FathersOccu, MothersName, MothersContact, MothersOccu, MonthlyIncome, NumOfSib, BirthOrder, GuardianName, GuardianContact, GuardianOccu, SoloParent, FamWorkingAbroad)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     $stmt->bind_param("ssssssssissssss", $userID, $fatherName, $fatherContact, $fatherOccupation, $motherName, $motherContact, $motherOccupation, $familyIncome, $siblings, $birthOrder, $guardianName, $guardianContact, $guardianOccupation, $soloParent, $familyAbroad);
 
     if ($stmt->execute()) {
-        echo 'Success'; // Return success response
+        echo 'Success';
     } else {
-        // Log error details for debugging
         error_log("Error: " . $stmt->error);
         echo 'Error: Unable to save family background information.';
     }
@@ -62,7 +58,5 @@ if ($result && $result->num_rows > 0) {
     echo 'User not found.';
 }
 
-// Close statement and connection
 $stmt->close();
 $conn->close();
-?>

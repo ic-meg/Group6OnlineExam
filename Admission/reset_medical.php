@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $email = $_SESSION['user_email'];
         echo $email;
-        // Prepare and execute the query
+
         $stmt = $conn->prepare("
             DELETE FROM medicalhistory 
             WHERE userID = (
@@ -33,4 +33,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn->close();
     }
 }
-?>

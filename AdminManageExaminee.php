@@ -10,6 +10,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,33 +24,30 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"
-     />
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
     <style>
         .custom-btn {
             background-color: var(--color-darkslategray-100);
-            color: #fff; /* White text color */
-            border-color: #6c757d; /* Matching border color */
+            color: #fff;
+            /* White text color */
+            border-color: #6c757d;
+            /* Matching border color */
         }
-        
-             .headExam {
+
+        .headExam {
             box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
             background-color: var(--color-lavenderblush);
             font-family: var(--font-montserrat);
@@ -57,6 +55,7 @@ session_start();
             height: 43.4px;
             text-align: left;
         }
+
         .logo-and-campus {
             display: flex;
             align-items: center;
@@ -66,27 +65,27 @@ session_start();
         .school-logo {
             width: 50px;
             height: auto;
-            margin-right: 10px; 
+            margin-right: 10px;
             cursor: pointer;
         }
 
         .logo-and-campus h4 {
             margin: 0;
-            font-size: 16px; 
+            font-size: 16px;
         }
 
         .bg-dark-green {
             background-color: #13443E;
         }
-        
+
         .sidebar {
             height: 100vh;
             color: white;
             font-family: var(--font-montserrat);
-            width: 70px; 
+            width: 70px;
             transition: all 0.2s;
-            position: fixed; 
-            z-index: 1; 
+            position: fixed;
+            z-index: 1;
         }
 
 
@@ -104,7 +103,7 @@ session_start();
         }
 
         .sidebar.show {
-            width: 250px; 
+            width: 250px;
         }
 
         .header {
@@ -112,19 +111,20 @@ session_start();
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
             color: black;
             padding: 10px;
-            
+
         }
+
         .header h4 {
             margin-left: 70px;
         }
-        
-        
+
+
 
         .content {
             transition: margin-left 0.3s;
             margin: 30px 30px 30px 100px;
         }
-        
+
 
         .content.sidebar-show {
             margin-left: calc(70px + 250px);
@@ -177,39 +177,39 @@ session_start();
             padding: 10px;
         } */
 
-        .col-lg-6{
+        .col-lg-6 {
             padding: 10px;
         }
 
-        #search{
+        #search {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
         }
 
-        #search > h4{
+        #search>h4 {
             margin-right: 10px;
         }
 
-        #view-btn{
+        #view-btn {
             background-color: red;
             width: 100%;
             margin-bottom: 5px;
         }
 
-        #schd-btn{
+        #schd-btn {
             background-color: #0C92DE;
             width: 100%;
         }
 
-        button{
+        button {
             border: none;
             color: white;
             border-radius: 10px;
         }
 
-        #search_inpt{
+        #search_inpt {
             border-radius: 10px;
             border: 2px gray solid;
         }
@@ -226,7 +226,8 @@ session_start();
             z-index: 1;
         }
 
-        th, td {
+        th,
+        td {
             padding: 8px 12px;
             border: 1px solid #ddd;
             text-align: left;
@@ -250,10 +251,10 @@ session_start();
             table-layout: fixed;
         }
 
-        p{
+        p {
             text-align: center;
         }
-        
+
 
 
 
@@ -266,7 +267,7 @@ session_start();
                 width: 70px;
             }
 
-            .content{
+            .content {
                 margin: 10px;
                 padding: 50px;
             }
@@ -295,17 +296,18 @@ session_start();
             .iconsandLabel {
                 font-family: var(--font-montserrat);
             }
-            
-        }
-
-        @media only screen and (max-width: 992px){
-            
-        #search{
-            justify-content: flex-start;
-            align-items: flex-start;
-        }
 
         }
+
+        @media only screen and (max-width: 992px) {
+
+            #search {
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+        }
+
         .input {
             width: 100%;
             height: 40px;
@@ -340,29 +342,28 @@ session_start();
             height: 1rem;
         }
 
-        .active{
+        .active {
             text-align: center;
             background-color: var(--color-seagreen-100);
             color: white;
         }
-        
-         .dropdown-toggle{
+
+        .dropdown-toggle {
             text-align: center;
             background-color: var(--color-darkslategray-100);
             color: white;
         }
+
         .dropdown {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            
+
         }
-     
-
-
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -393,11 +394,11 @@ session_start();
             </div>
         </div>
         <div class="flex-grow-1">
-        <div class="header d-flex justify-content-between align-items-center">
+            <div class="header d-flex justify-content-between align-items-center">
                 <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
                 <h4>Admin Manage Examinee</h4>
                 <div class="header-icons">
-                <?php include"adminnotif.php";?>
+                    <?php include "adminnotif.php"; ?>
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                     <!-- Include your custom redirect.js -->
                     <script src="Redirect.js"></script>
@@ -414,146 +415,145 @@ session_start();
             <div class="content" id="content">
                 <div class="container-fluid">
                     <div class="row justify-content-end">
-                <table class="table" style="text-align: center;">
-                <div class="row">
-                <thead class="headExam">
-                                <tr>
-                                    <th colspan="6">List of examinee</th>
-                                </tr>
-                </thead>
-        
-                <div class="search-and-table-container">
-                    <div class="group" id="search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-                            <g>
-                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                            </g>
-                        </svg>
-                        <input class="input" type="search" placeholder="Search" id="search_inpt"/>
-                    </div>
-                
-                
-                <thead>
-                    <tr>
-                    <th scope="col">Examinee code</th>
-                    <!-- <th scope="col">Email</th> -->
-                    <th scope="col">Username</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody id = 'search_tbl'>
+                        <table class="table" style="text-align: center;">
+                            <div class="row">
+                                <thead class="headExam">
+                                    <tr>
+                                        <th colspan="6">List of examinee</th>
+                                    </tr>
+                                </thead>
 
-                <?php
-                $sql1 = "SELECT  * FROM useraccount";
+                                <div class="search-and-table-container">
+                                    <div class="group" id="search">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                                            <g>
+                                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                                            </g>
+                                        </svg>
+                                        <input class="input" type="search" placeholder="Search" id="search_inpt" />
+                                    </div>
 
-                $result = $conn->query($sql1);
-                
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["control_number"] . "</td>";
-            // echo "<td>" . $row["username"] . "</td>";
 
-            
-            $stmt2 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
-            $stmt2->bind_param("i", $row["control_number"]);
-            $stmt2->execute();
-            $result2 = $stmt2->get_result();
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Examinee code</th>
+                                            <!-- <th scope="col">Email</th> -->
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='search_tbl'>
 
-            if ($result2->num_rows > 0) {
-                while ($row2 = $result2->fetch_assoc()) {
+                                        <?php
+                                        $sql1 = "SELECT  * FROM useraccount";
 
-     
-                    $stmt3 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
-                    $stmt3->bind_param("i", $row2["control_number"]);
-                    $stmt3->execute();
-                    $result3 = $stmt3->get_result();
+                                        $result = $conn->query($sql1);
 
-                    if ($result3->num_rows > 0) {
-                        while ($row3 = $result3->fetch_assoc()) {
-                         
-                            echo "<td>". $row3["username"] ."</td>";
-                            
-                        }
-                    } else {
-                        echo "<td>No personal details found</td>";
-                    }
-                    $stmt4 = $conn->prepare("SELECT * FROM admin_booking WHERE control_number = ?");
-                    $stmt4->bind_param("i", $row2["control_number"]);
-                    $stmt4->execute();
-                    $result4 = $stmt4->get_result();
-                    if ($result4->num_rows > 0) {
-                        while ($row4 = $result4->fetch_assoc()) {
-                            $bg_color = ($row4["Schedule"] == "Processed"   ) ? "red" : "green";
-                            $bg_color = ($row4["Schedule"] == "Missed") ? "red" : "green";
-                            echo '<td>
-                            <p style="background-color: ' . $bg_color . '; border-radius: 10px; margin: 5px; color: white;">'. $row4["Schedule"] .'</p>
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                echo "<tr>";
+                                                echo "<td>" . $row["control_number"] . "</td>";
+                                                // echo "<td>" . $row["username"] . "</td>";
+
+
+                                                $stmt2 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
+                                                $stmt2->bind_param("i", $row["control_number"]);
+                                                $stmt2->execute();
+                                                $result2 = $stmt2->get_result();
+
+                                                if ($result2->num_rows > 0) {
+                                                    while ($row2 = $result2->fetch_assoc()) {
+
+
+                                                        $stmt3 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
+                                                        $stmt3->bind_param("i", $row2["control_number"]);
+                                                        $stmt3->execute();
+                                                        $result3 = $stmt3->get_result();
+
+                                                        if ($result3->num_rows > 0) {
+                                                            while ($row3 = $result3->fetch_assoc()) {
+
+                                                                echo "<td>" . $row3["username"] . "</td>";
+                                                            }
+                                                        } else {
+                                                            echo "<td>No personal details found</td>";
+                                                        }
+                                                        $stmt4 = $conn->prepare("SELECT * FROM admin_booking WHERE control_number = ?");
+                                                        $stmt4->bind_param("i", $row2["control_number"]);
+                                                        $stmt4->execute();
+                                                        $result4 = $stmt4->get_result();
+                                                        if ($result4->num_rows > 0) {
+                                                            while ($row4 = $result4->fetch_assoc()) {
+                                                                $bg_color = ($row4["Schedule"] == "Processed") ? "red" : "green";
+                                                                $bg_color = ($row4["Schedule"] == "Missed") ? "red" : "green";
+                                                                echo '<td>
+                            <p style="background-color: ' . $bg_color . '; border-radius: 10px; margin: 5px; color: white;">' . $row4["Schedule"] . '</p>
                             </td>';
-                            echo '<td class="text-center">
+                                                                echo '<td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Action
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">';
-                            
-                      
-                            $check_sql = "SELECT * FROM admin_booking WHERE control_number = ?";
-                            $check_stmt = $conn->prepare($check_sql);
-                            $check_stmt->bind_param("i", $row2['control_number']);
-                            $check_stmt->execute();
-                            $check_result = $check_stmt->get_result();
-                            
-                            if ($check_result->num_rows > 0) {
-                               
-                                if ($row4["Schedule"] == "Processed") {
-                          
-                                    echo '<form method="post" action="AdminStudentRecords.php" style="display:inline;">
+
+
+                                                                $check_sql = "SELECT * FROM admin_booking WHERE control_number = ?";
+                                                                $check_stmt = $conn->prepare($check_sql);
+                                                                $check_stmt->bind_param("i", $row2['control_number']);
+                                                                $check_stmt->execute();
+                                                                $check_result = $check_stmt->get_result();
+
+                                                                if ($check_result->num_rows > 0) {
+
+                                                                    if ($row4["Schedule"] == "Processed") {
+
+                                                                        echo '<form method="post" action="AdminStudentRecords.php" style="display:inline;">
                                             <button class="dropdown-item" name="btn_vw" value="' . $row2['control_number'] . '">View</button>
                                         </form>
                                         <form method="post" action="AdminSchedule.php" style="display:inline;">
                                             <button class="dropdown-item" name="btn_schd" value="' . $row2['control_number'] . '">Schedule</button>
                                         </form>
                                        ';
-                                } elseif ($row4["Schedule"] == "Missed") {
-                                 
-                                    echo '
+                                                                    } elseif ($row4["Schedule"] == "Missed") {
+
+                                                                        echo '
                                 <form method="post" action="AdminSchedule.php" style="display:inline;">
                                             <button class="dropdown-item" name="btn_schd" value="' . $row2['control_number'] . '">Reschedule</button>
                                         </form>';
-                                }  elseif ($row4["Schedule"] == "Completed") {
-                                    
-                                    echo '<form method="post" action="Admin_student.php" style="display:inline;">
+                                                                    } elseif ($row4["Schedule"] == "Completed") {
+
+                                                                        echo '<form method="post" action="Admin_student.php" style="display:inline;">
                                     <button class="dropdown-item" name="btn_vw" value="' . $row2['control_number'] . '">View Status</button>
                                 </form>
                               ';
-                                }else {
-                                  
-                                    echo '<button class="dropdown-item" disabled>Already Scheduled</button>';
-                                    echo '<form method="post" action="AdminSchedule.php" style="display:inline;">
+                                                                    } else {
+
+                                                                        echo '<button class="dropdown-item" disabled>Already Scheduled</button>';
+                                                                        echo '<form method="post" action="AdminSchedule.php" style="display:inline;">
                                     <button class="dropdown-item" name="btn_vw" value="' . $row2['control_number'] . '">Edit</button>
                                 </form>';
-                                }
-                            } else {
-           
-                                echo '<form method="post" action="AdminSchedule.php" style="display:inline;">
+                                                                    }
+                                                                } else {
+
+                                                                    echo '<form method="post" action="AdminSchedule.php" style="display:inline;">
                                         <button class="dropdown-item" name="btn_schd" value="' . $row2['control_number'] . '">Schedule</button>
                                     </form>';
-                                
-                          
-                                echo '<form method="post" action="AdminStudentRecords.php" style="display:inline;">
+
+
+                                                                    echo '<form method="post" action="AdminStudentRecords.php" style="display:inline;">
                                         <button class="dropdown-item" name="btn_vw" value="' . $row2['control_number'] . '">View</button>
                                     </form>';
-                            }
-                            
-                            echo '</div>
+                                                                }
+
+                                                                echo '</div>
                                 </div>
                             </td>';
-                        }
-                    } else {
-                       
-                        echo '<td><p style="background-color:red; border-radius: 10px; margin: 5px; color: white;">Not scheduled</p></td>';
-                        echo '<td class="text-center">
+                                                            }
+                                                        } else {
+
+                                                            echo '<td><p style="background-color:red; border-radius: 10px; margin: 5px; color: white;">Not scheduled</p></td>';
+                                                            echo '<td class="text-center">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Action
@@ -566,76 +566,74 @@ session_start();
                                 </div>
                             </div>
                         </td>';
+                                                        }
+                                                    }
+                                                } else {
+
+
+                                                    echo "<td colspan='1'>No student info found</td>";
+                                                    echo "<td colspan='1'>No student info found</td>";
+                                                    echo "<td colspan='1'>No student info found</td>";
+                                                }
+
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='12'>No results found</td></tr>";
+                                        }
+
+
+
+                                        $conn->close();
+                                        ?>
+
+
+
+                                    </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function toggleSidebar() {
+                    var sidebar = document.getElementById('sidebar');
+                    var content = document.getElementById('content');
+                    var schoolName = document.querySelector('.SchoolName');
+
+                    schoolName.style.display = 'none';
+
+                    sidebar.classList.toggle('show');
+                    content.classList.toggle('sidebar-show');
+
+                    if (sidebar.classList.contains('show')) {
+                        schoolName.style.display = 'block';
+                    } else {
+                        schoolName.style.display = 'none';
                     }
                 }
-                
-            } else {
-            
-    
-                echo "<td colspan='1'>No student info found</td>";
-                echo "<td colspan='1'>No student info found</td>";
-                echo "<td colspan='1'>No student info found</td>";
-            }
-
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='12'>No results found</td></tr>";
-    }
 
 
 
-    $conn->close();
-?>
-
-   
-    
-                </tbody>
-                </table>
-            </div>
-            </div>
-        </div>
-        <script>
-            function toggleSidebar() {
-                var sidebar = document.getElementById('sidebar');
-                var content = document.getElementById('content');
-                var schoolName = document.querySelector('.SchoolName');
-
-                schoolName.style.display = 'none';
-                
-                sidebar.classList.toggle('show');
-                content.classList.toggle('sidebar-show');
-
-                if (sidebar.classList.contains('show')) {
-                    schoolName.style.display = 'block'; 
-                } else {
-                    schoolName.style.display = 'none'; 
-                }
-            }
+                const searchInput = document.getElementById('search_inpt');
+                const tableBody = document.getElementById('search_tbl');
 
 
-          
-const searchInput = document.getElementById('search_inpt');
-const tableBody = document.getElementById('search_tbl');
+                searchInput.addEventListener('input', function() {
+                    const searchValue = this.value.toLowerCase().trim();
 
 
-searchInput.addEventListener('input', function() {
-    const searchValue = this.value.toLowerCase().trim();
+                    Array.from(tableBody.getElementsByTagName('tr')).forEach(function(row) {
+                        const text = row.innerText.toLowerCase();
 
-  
-    Array.from(tableBody.getElementsByTagName('tr')).forEach(function(row) {
-        const text = row.innerText.toLowerCase();
 
-       
-        if (text.includes(searchValue)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-});
+                        if (text.includes(searchValue)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            </script>
+</body>
 
-            
-        </script>
-    </body>
-    </html>
+</html>

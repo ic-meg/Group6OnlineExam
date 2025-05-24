@@ -21,17 +21,19 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 </head>
 <style>
-      .eye-icon {
-            top: 24px;
-            position: absolute;
-            right: 30px;
-            cursor: pointer;
-            color: #888;
-            display: none;
-        }
-        .eye-icon:hover {
-            color: #000;
-        }
+  .eye-icon {
+    top: 24px;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+    color: #888;
+    display: none;
+  }
+
+  .eye-icon:hover {
+    color: #000;
+  }
+
   .welcome {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
@@ -100,7 +102,7 @@
                   <div class="admin-username-child2"></div>
               </div>
             </div>
-        
+
             <!-- <div class="admin-username-container">
               <div class="admin-username1">
                 <input required type="password" name="NewPassword" id="password" autocomplete="off" class="admin-username-item">
@@ -125,120 +127,24 @@
       </div>
     </div>
   </div>
-  <?php 
 
-// include "dbcon.php";
-
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-
-// require 'C:/Users/Meg Angeline Fabian/phpmailer/vendor/autoload.php';
-
-// function sendemail_verify($EmailAddress, $verification_code){
-//     $subject = "Email Verification";
-//     $message = "Hi<br><br>";
-//     $message .= "Your verification code is:<br>";
-//     $message .= "<strong>$verification_code</strong><br><br>";
-//     $message .= "If you did not sign up for our service, please ignore this email.<br><br>";
-//     $message .= "Best regards,<br>Cavite State University - Imus Campus";
-
-//     $mail = new PHPMailer(true);
-//     try {
-//         $mail->isSMTP();
-//         $mail->Host = 'smtp.gmail.com';
-//         $mail->SMTPAuth = true;
-//         $mail->Username = 'fabian.megangeline2003@gmail.com'; // your Gmail address
-//         $mail->Password = 'upqj akck ojis wmsa'; // your Gmail password
-//         $mail->SMTPSecure = 'ssl';
-//         $mail->Port = 465;
-
-//         $mail->setFrom('megangeline08@gmail.com', 'Online Entrance Exam');
-//         $mail->addAddress($EmailAddress);
-
-//         $mail->isHTML(true);
-//         $mail->Subject = $subject;
-//         $mail->Body = $message;
-
-//         $mail->send();
-
-//     } catch (Exception $e) {
-//         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-//     }
-// }
-
-// if (isset($_POST['sendCode'])) {
-//     $EmailAddress = $_POST['EmailAddress'];
-
-//     $check_query = "SELECT * FROM useraccount WHERE email = '$EmailAddress'";
-//     $check_result = mysqli_query($conn, $check_query);
-
-//     if(mysqli_num_rows($check_result)){
-//       echo "<script>
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Email Exists!',
-//         text: 'Email already exists. Please use another email.',
-//         confirmButtonColor: '#448b4f',
-//         confirmButtonTextColor: '#ffffff'
-//       }).then(function() {
-//         window.location.href = 'Signup.php';
-//       });
-//       </script>";
-//     }else{
-//       $verification_code = rand(100000, 999999); 
-
-//       $insert_query = "INSERT INTO useraccount (email, verification_code) VALUES ('$EmailAddress', '$verification_code')";
-//       $insert_run = mysqli_query($conn, $insert_query);
-  
-//       if ($insert_run) {
-//         session_start();
-//         $_SESSION['verification_email'] = $EmailAddress;
-  
-//         sendemail_verify($EmailAddress, $verification_code);
-//         echo "<script>
-//         Swal.fire({
-//           icon: 'success',
-//           title: 'Verification Code Sent!',
-//           text: 'Verification code is sent to your email address.',
-//           confirmButtonColor: '#448b4f',
-//           confirmButtonTextColor: '#ffffff'
-//         }).then(function() {
-//           window.location.href = 'Verification.php';
-//         });
-//         </script>";
-//         header("Location: Verification.php");
-//         exit;  
-//       } else {
-//         echo "<script>
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Error!',
-//           html: '<div style=\"font-size: 18px; padding: 20px;\">Failed to store the verification code.</div>',
-//           confirmButtonTextColor: '#ffffff'
-//         })
-//         </script>";
-//       }
-//     }
-// }
-?>
- <?php
+  <?php
   include "dbcon.php";
 
   if (isset($_POST['next'])) {
-      session_start();
-      $GetControlNumber = $_POST['GetControlNumber'];
+    session_start();
+    $GetControlNumber = $_POST['GetControlNumber'];
 
 
-      $checkExistQuery = "SELECT control_number FROM useraccount WHERE control_number = ?";
-      $stmtCheckExist = $conn->prepare($checkExistQuery);
-      $stmtCheckExist->bind_param("s", $GetControlNumber);
-      $stmtCheckExist->execute();
-      $result = $stmtCheckExist->get_result();
+    $checkExistQuery = "SELECT control_number FROM useraccount WHERE control_number = ?";
+    $stmtCheckExist = $conn->prepare($checkExistQuery);
+    $stmtCheckExist->bind_param("s", $GetControlNumber);
+    $stmtCheckExist->execute();
+    $result = $stmtCheckExist->get_result();
 
-      if ($result->num_rows > 0) {
-          $_SESSION['GetControlNumber'] = $GetControlNumber;
-          echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    if ($result->num_rows > 0) {
+      $_SESSION['GetControlNumber'] = $GetControlNumber;
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script>
               Swal.fire({
                   title: "Success",
@@ -250,8 +156,8 @@
                   }
               });
           </script>';
-      } else {
-          echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    } else {
+      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script>
               Swal.fire({
                   title: "Error",
@@ -259,9 +165,9 @@
                   icon: "error"
               });
           </script>';
-      }
-      $stmtCheckExist->close();
-      $conn->close();
+    }
+    $stmtCheckExist->close();
+    $conn->close();
   }
   ?>
 

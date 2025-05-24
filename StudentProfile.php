@@ -1,16 +1,8 @@
 <?php
 session_start();
-include 'C:\xampp\htdocs\Group6OnlineExam\Admission\dbconn.php';
-
-if (!isset($_SESSION['control_number']) || $_SESSION['user_type'] !== 'student') {
-    header("Location: Login.php");
-    exit;
-}
-
+include 'C:\xampp\htdocs\OnlineExam\Admission\dbconn.php';
+include 'student_session.php';
 $control_number = $_SESSION['control_number'];
-
-
-
 
 $sqlFetchUserID = "
     SELECT userID
@@ -56,7 +48,7 @@ $resultUser = $stmtFetchUser->get_result();
 
 if ($resultUser && $resultUser->num_rows > 0) {
     $rowUser = $resultUser->fetch_assoc();
-    
+
     $_SESSION['user_email'] = isset($rowUser['email']) ? $rowUser['email'] : 'No information yet';
 } else {
     echo "Error fetching data or no data found";
@@ -148,6 +140,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,23 +152,24 @@ $conn->close();
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" />
     <style>
-
         .logo-and-campus {
             display: flex;
             align-items: center;
             padding: 10px;
         }
+
         .logo-and-campus h4 {
-            display: none; 
-            font-size:18px;
+            display: none;
+            font-size: 18px;
         }
+
         .header h4 {
             font-family: var(--font-montserrat);
         }
@@ -419,6 +413,7 @@ $conn->close();
         }
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -450,10 +445,10 @@ $conn->close();
                 <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
                 <h4>Examinee Profile</h4>
                 <div class="header-icons">
-                <?php include "notif.php"; ?>
+                    <?php include "notif.php"; ?>
 
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-              
+
                     <script src="redirect.js"></script>
                     <button class="Btn">
                         <div class="sign">
@@ -470,26 +465,26 @@ $conn->close();
                     <div class="profile-header">
                         <img src="profile-pic.png" alt="Profile Picture">
                         <h2><?php echo $firstname; ?></h2>
-                        <p>Control Number: <?php echo $control_number;?></p>
+                        <p>Control Number: <?php echo $control_number; ?></p>
                         <!-- <div class="active">ACTIVE</div> -->
                     </div>
                     <div class="student-content">
                         <div class="title">Examinee Information</div>
                         <!-- <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" id="username" name="username" value="<?php echo $username;?>" readonly>
+                            <input type="text" id="username" name="username" value="<?php echo $username; ?>" readonly>
                         </div> -->
                         <!-- <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" value="<?php echo $password;?>" readonly>
+                            <input type="password" id="password" name="password" value="<?php echo $password; ?>" readonly>
                         </div> -->
-                        <div class="form-group">    
+                        <div class="form-group">
                             <label for="fullname">Fullname:</label>
                             <input type="text" id="fullname" name="fullname" value="<?php echo $firstname; ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Birthdate:</label>
-                            <input type="text" id="birthdate" name="birthdate" value="<?php echo $birthdate;?>" readonly>
+                            <input type="text" id="birthdate" name="birthdate" value="<?php echo $birthdate; ?>" readonly>
                         </div>
                         <!-- <div class="form-group">
                             <label for="age">Age:</label>
@@ -497,34 +492,34 @@ $conn->close();
                         </div> -->
                         <div class="form-group">
                             <label for="birthplace">Place of birth:</label>
-                            <input type="text" id="birthplace" name="birthplace" value="<?php echo $placeOfBirth;?>" readonly>
+                            <input type="text" id="birthplace" name="birthplace" value="<?php echo $placeOfBirth; ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="address">Full Address:</label>
-                            <input type="text" id="address" name="address" value="<?php echo $town . ",";?> <?php echo $province;?>" readonly>
+                            <input type="text" id="address" name="address" value="<?php echo $town . ","; ?> <?php echo $province; ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address:</label>
-                            <input type="email" id="email" name="email" value="<?php echo $email;?>" readonly>
+                            <input type="email" id="email" name="email" value="<?php echo $email; ?>" readonly>
                         </div>
                         <!-- <div class="form-group">
                             <label for="phone">Phone No.:</label>
-                            <input type="text" id="phone" name="phone" value="<?php echo $phone;?>" readonly>
+                            <input type="text" id="phone" name="phone" value="<?php echo $phone; ?>" readonly>
                         </div> -->
                         <div class="form-group">
                             <label for="guardian">Guardian Name:</label>
-                            <input type="text" id="guardian" name="guardian" value="<?php echo $guardiansName?>" readonly>
+                            <input type="text" id="guardian" name="guardian" value="<?php echo $guardiansName ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="occupation">Occupation:</label>
-                            <input type="text" id="occupation" name="occupation" value="<?php echo $guardiansOccu?>" readonly>
+                            <input type="text" id="occupation" name="occupation" value="<?php echo $guardiansOccu ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact No.:</label>
-                            <input type="text" id="contact" name="contact" value="<?php echo $guardiansContact?>" readonly>
+                            <input type="text" id="contact" name="contact" value="<?php echo $guardiansContact ?>" readonly>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -548,4 +543,5 @@ $conn->close();
         }
     </script>
 </body>
+
 </html>

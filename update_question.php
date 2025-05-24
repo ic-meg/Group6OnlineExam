@@ -1,8 +1,8 @@
 <?php
-include "dbcon.php"; 
+include "dbcon.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   
+
     $rawData = file_get_contents('php://input');
     $data = json_decode($rawData, true);
 
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     error_log("Parsed POST data: " . print_r($data, true));
 
     if (!isset($data['category'], $data['questionId'], $data['questionText'], $data['choices'], $data['correctChoiceIndex'])) {
-        http_response_code(400); 
+        http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'Missing or invalid parameters']);
         exit;
     }
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $choices = $data['choices'];
     $correctChoiceIndex = $data['correctChoiceIndex'];
 
-   
+
     switch ($category) {
         case 'Math':
             $table = 'admin_math';
@@ -41,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
     }
 
-   
+
     $stmt = $conn->prepare("UPDATE $table SET questionText = ?, ChoiceA = ?, ChoiceB = ?, ChoiceC = ?, ChoiceD = ?, AnswerKey = ? WHERE questionId = ?");
     if (!$stmt) {
-        http_response_code(500); 
+        http_response_code(500);
         echo json_encode(['success' => false, 'message' => 'Failed to prepare statement']);
         exit;
     }
@@ -61,5 +61,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     exit;
 }
-
-?>

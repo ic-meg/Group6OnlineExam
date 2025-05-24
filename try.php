@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,12 +26,15 @@
             width: 300px;
             z-index: 1000;
         }
+
         .notification.show {
             display: block;
         }
+
         .close-btn {
             cursor: pointer;
         }
+
         .note {
             margin-top: 20px;
             padding: 10px;
@@ -39,6 +43,7 @@
             text-align: left;
             margin-left: -10px;
         }
+
         #report-container {
             margin-top: 20px;
             padding: 10px;
@@ -48,6 +53,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -59,10 +65,12 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                <img src="./public/frame-42@2x.png" alt="Recent Notification Icon"/>
+                                <img src="./public/frame-42@2x.png" alt="Recent Notification Icon" />
                                 <div class="row">
                                     <div class="col-md-12"><b>Online Entrance Exam Schedule</b></div>
-                                    <div class="col-md-12"><p>10/21/23 - 02:45pm</p></div>
+                                    <div class="col-md-12">
+                                        <p>10/21/23 - 02:45pm</p>
+                                    </div>
                                 </div>
                             </button>
                         </h2>
@@ -120,7 +128,7 @@
         });
 
         const proctoringOptions = {
-            trackingOptions: { 
+            trackingOptions: {
                 audio: false,
                 numHumans: false,
                 tabSwitch: true,
@@ -130,69 +138,71 @@
                 auxiliaryDevice: false,
                 recordSession: false
             },
-            showHowToVideo: false,  
+            showHowToVideo: false,
         };
         async function init() {
-    const credentials = getCredentials();
-    const apInstance = new AutoProctor(credentials);
-    await apInstance.setup(proctoringOptions);
+        const credentials = getCredentials();
+        const apInstance = new AutoProctor(credentials);
+        await apInstance.setup(proctoringOptions);
 
-    document.getElementById("btn-start").addEventListener("click", () => apInstance.start());
+        document.getElementById("btn-start").addEventListener("click", () => apInstance.start());
 
-    window.addEventListener("apMonitoringStarted", () => {
-        document.getElementById("btn-start").disabled = true;
-        document.getElementById("btn-stop").disabled = false;
-        document.getElementById("ap-test-proctoring-status").innerHTML = "Proctoring...";
-    });
-
-    document.getElementById("btn-stop").addEventListener("click", async () => {
-        try {
-            console.log("Stopping proctoring...");
-            await apInstance.stop(); 
-            console.log("Proctoring stopped.");
-        } catch (error) {
-            console.error("Error stopping proctoring:", error);
-        }
-    });
-
-    window.addEventListener("apMonitoringStopped", async () => {
-    console.log("Proctoring stopped event triggered.");
-    try {
-        const reportOptions = getReportOptions();
-   
-        const reportData = await apInstance.getReport(reportOptions); 
-        await saveReportData(reportData);
-        window.location.href = 'report.php';
-    } catch (error) {
-        console.error("Error generating or saving report:", error);
-    }
-});
-
-});
-
-
-}
-
-async function saveReportData(reportData) {
-    try {
-        const response = await fetch('save_report.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ reportData })
+        window.addEventListener("apMonitoringStarted", () => {
+            document.getElementById("btn-start").disabled = true;
+            document.getElementById("btn-stop").disabled = false;
+            document.getElementById("ap-test-proctoring-status").innerHTML = "Proctoring...";
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to save report data');
-        }
-        console.log('Report data saved successfully.');
-    } catch (error) {
-        console.error('Error saving report data:', error);
-    }
-}
+        document.getElementById("btn-stop").addEventListener("click", async () => {
+            try {
+                console.log("Stopping proctoring...");
+                await apInstance.stop();
+                console.log("Proctoring stopped.");
+            } catch (error) {
+                console.error("Error stopping proctoring:", error);
+            }
+        });
 
-window.addEventListener("load", init);
+        window.addEventListener("apMonitoringStopped", async () => {
+            console.log("Proctoring stopped event triggered.");
+            try {
+                const reportOptions = getReportOptions();
+
+                const reportData = await apInstance.getReport(reportOptions);
+                await saveReportData(reportData);
+                window.location.href = 'report.php';
+            } catch (error) {
+                console.error("Error generating or saving report:", error);
+            }
+        });
+
+        });
+
+
+        }
+
+        async function saveReportData(reportData) {
+            try {
+                const response = await fetch('save_report.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        reportData
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to save report data');
+                }
+                console.log('Report data saved successfully.');
+            } catch (error) {
+                console.error('Error saving report data:', error);
+            }
+        }
+
+        window.addEventListener("load", init);
 
 
 
@@ -211,7 +221,7 @@ window.addEventListener("load", init);
         const CLIENT_ID = 'OHuIPLGD'; // INSERT YOUR ID HERE!!!!
         const CLIENT_SECRET = 'Qlb80sl0WQNE0ha'; // INSERT YOUR SECRET HERE!!!!    
         const getTestAttemptId = () => Math.random().toString(36).slice(2, 7);
-        
+
         function getHashTestAttemptId(testAttemptId) {
             if (CLIENT_SECRET === null) {
                 return null;
@@ -221,8 +231,8 @@ window.addEventListener("load", init);
                 const hash = CryptoJS.HmacSHA256(messageWordArray, secretWordArray);
                 return CryptoJS.enc.Base64.stringify(hash);
             }
-        }    
-        
+        }
+
         function getCredentials() {
             const testAttemptId = getTestAttemptId();
             const hashedTestAttemptId = getHashTestAttemptId(testAttemptId);
@@ -231,8 +241,8 @@ window.addEventListener("load", init);
                 testAttemptId: testAttemptId,
                 hashedTestAttemptId: hashedTestAttemptId
             };
-        }    
-        
+        }
+
         const getReportOptions = () => {
             return {
                 groupReportsIntoTabs: true,
@@ -245,4 +255,5 @@ window.addEventListener("load", init);
     </script>
 
 </body>
+
 </html>

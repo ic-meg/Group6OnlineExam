@@ -1,5 +1,5 @@
 <?php
-include 'dbconn.php'; 
+include 'dbconn.php';
 $email = $_POST['email'];
 
 
@@ -24,4 +24,3 @@ if ($result && $result->num_rows > 0) {
 } else {
     echo "User not found.";
 }
-?>

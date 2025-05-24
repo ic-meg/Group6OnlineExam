@@ -78,20 +78,6 @@
     'normal' => $fontDir . '\DejaVuSerif',
   ),
   'montserrat' => array(
-    'italic' => $fontDir . '\f470586e928fb1e2bea7ffacde83d542',
-    'normal' => $fontDir . '\11be3eb1825a588a468235740322e12d',
-  ),
-  'inter' => array(
-    'italic' => $fontDir . '\c9607e660a4e38632405172876df68a4',
-    'normal' => $fontDir . '\4f95092608a03c140dccd33606c19f31',
-  ),
-  'poppins' => array(
-    'normal' => $fontDir . '\a62832bf75823019dc29c5a9c470d64d',
-  ),
-  'montserrat alternates' => array(
-    'normal' => $fontDir . '\89ad368f708b9b614436e04d65746410',
-  ),
-  'montagu slab' => array(
-    'normal' => $fontDir . '\091df2e758b6123055fc6cab7776a378',
+    'normal' => $fontDir . '\8b39ce6f1e92b671adb8930c94175e08',
   ),
 ) ?>

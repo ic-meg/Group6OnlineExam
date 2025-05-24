@@ -8,6 +8,7 @@ $reportData = isset($_SESSION['reportData']) ? $_SESSION['reportData'] : null;
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,7 @@ $reportData = isset($_SESSION['reportData']) ? $_SESSION['reportData'] : null;
             background-color: #f4f4f4;
             padding: 20px;
         }
+
         #report-container {
             margin: auto;
             max-width: 800px;
@@ -29,12 +31,14 @@ $reportData = isset($_SESSION['reportData']) ? $_SESSION['reportData'] : null;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+
         h1 {
             text-align: center;
             margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
 
     <div id="report-container">
@@ -43,12 +47,12 @@ $reportData = isset($_SESSION['reportData']) ? $_SESSION['reportData'] : null;
             <?php if ($reportData): ?>
                 <h2>Report Summary</h2>
                 <?php
-                
+
                 if (is_array($reportData)) {
-                   
+
                     echo '<pre>' . htmlspecialchars(json_encode($reportData, JSON_PRETTY_PRINT)) . '</pre>';
                 } else {
-                
+
                     echo '<pre>' . htmlspecialchars($reportData) . '</pre>';
                 }
                 ?>
@@ -59,4 +63,5 @@ $reportData = isset($_SESSION['reportData']) ? $_SESSION['reportData'] : null;
     </div>
 
 </body>
+
 </html>

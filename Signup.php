@@ -68,7 +68,7 @@
         
           <div class="admin-username-wrapper">
             <div class="admin-username1">
-            <form action="/Group6OnlineExam/Signup.php" method="POST">
+            <form action="/OnlineExam/Signup.php" method="POST">
               <input  type="text"  name="control_number" autocomplete="off" class="admin-username-item" required>
               <label class="username2" style="margin-left: 15px; text-align:left;margin-top:-5px;">Control Number</label>
               <div class="value-input" >Value Input</div>
@@ -197,7 +197,7 @@ if (isset($_POST['signup'])) {
   <script src="bootstrap.min.js"></script>
   <script>
     function cancelRedirect() {
-        window.location.href = 'Guess.php';
+        window.location.href = 'index.php';
     }
   </script>
   

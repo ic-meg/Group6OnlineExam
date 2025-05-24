@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include "dbcon.php";
 
@@ -68,10 +68,10 @@ $formatted_time = '';
 $row_useraccount = $result_useraccount->fetch_assoc();
 
 
-if($result_useraccount->num_rows > 0) {
-    $control_number = $row_useraccount['control_number']; 
+if ($result_useraccount->num_rows > 0) {
+    $control_number = $row_useraccount['control_number'];
 
-    
+
     $sql_schedule = "SELECT Schedule, date, time FROM admin_booking WHERE control_number = ?";
     $stmt_schedule = $conn->prepare($sql_schedule);
 
@@ -87,7 +87,7 @@ if($result_useraccount->num_rows > 0) {
         die("Execute failed (schedule query): (" . $stmt_schedule->errno . ") " . $stmt_schedule->error);
     }
 
-    
+
     if ($result_schedule->num_rows > 0) {
         $row_schedule = $result_schedule->fetch_assoc();
         $schedule_status = $row_schedule['Schedule'];
@@ -97,27 +97,26 @@ if($result_useraccount->num_rows > 0) {
         date_default_timezone_set('Asia/Manila');
 
         $formatted_time = date('g:i A', strtotime($schedule_time));
-        
-   
-        $current_datetime = new DateTime(); 
-        $scheduled_datetime = new DateTime($schedule_date . ' ' . $schedule_time); 
 
-        
+
+        $current_datetime = new DateTime();
+        $scheduled_datetime = new DateTime($schedule_date . ' ' . $schedule_time);
+
+
 
         if ($current_datetime > $scheduled_datetime) {
-            
+
             $missed_message = "Sorry, you missed your scheduled exam on " . date('F j, Y', strtotime($schedule_date)) . ' at ' . htmlspecialchars($formatted_time) . '. Please contact the administration for further instructions.';
         } else {
-            $missed_message = ""; 
+            $missed_message = "";
         }
-     
-     
+
+
         $stmt_schedule->close();
         $result_schedule->close();
     } else {
-        
     }
- 
+
     $stmt_useraccount->close();
     $result_useraccount->close();
 } else {
@@ -147,7 +146,7 @@ $stmt2->close();
 
 
 $sql_count_passed = "SELECT COUNT(*) as tbl_count FROM student_examination_score where status = 'PASSED'";
-                    
+
 $c_p_result = $conn->query($sql_count_passed);
 
 $c_p_row = $c_p_result->fetch_assoc();
@@ -155,40 +154,38 @@ $c_p_row = $c_p_result->fetch_assoc();
 
 
 $sql_count_failed = "SELECT COUNT(*) as tbl_count FROM student_examination_score where status = 'FAILED'";
-                    
+
 $c_f_result = $conn->query($sql_count_failed);
 
 $c_f_row = $c_f_result->fetch_assoc();
 
 
-    // Retrieve examination score status
-    $sql_exam_status = "SELECT status FROM student_examination_score WHERE control_number = ?";
-    $stmt_exam_status = $conn->prepare($sql_exam_status);
-    if (!$stmt_exam_status) {
-        die("Prepare failed (exam status query): (" . $conn->errno . ") " . $conn->error);
-    }
-    $stmt_exam_status->bind_param("s", $control_number);
-    $stmt_exam_status->execute();
-    $result_exam_status = $stmt_exam_status->get_result();
-    if (!$result_exam_status) {
-        die("Execute failed (exam status query): (" . $stmt_exam_status->errno . ") " . $stmt_exam_status->error);
-    }
+// Retrieve examination score status
+$sql_exam_status = "SELECT status FROM student_examination_score WHERE control_number = ?";
+$stmt_exam_status = $conn->prepare($sql_exam_status);
+if (!$stmt_exam_status) {
+    die("Prepare failed (exam status query): (" . $conn->errno . ") " . $conn->error);
+}
+$stmt_exam_status->bind_param("s", $control_number);
+$stmt_exam_status->execute();
+$result_exam_status = $stmt_exam_status->get_result();
+if (!$result_exam_status) {
+    die("Execute failed (exam status query): (" . $stmt_exam_status->errno . ") " . $stmt_exam_status->error);
+}
 
-    if ($result_exam_status->num_rows > 0) {
-        $row_exam_status = $result_exam_status->fetch_assoc();
-        $exam_status = $row_exam_status['status'];
+if ($result_exam_status->num_rows > 0) {
+    $row_exam_status = $result_exam_status->fetch_assoc();
+    $exam_status = $row_exam_status['status'];
 
-        if ($exam_status == 'PASSED' || $exam_status == 'FAILED') {
-            $sql_update_schedule_done = "UPDATE admin_booking SET Schedule = 'Completed' WHERE control_number = ?";
-            $stmt_update_schedule_done = $conn->prepare($sql_update_schedule_done);
-            if (!$stmt_update_schedule_done) {
-                die("Prepare failed (update schedule to done query): (" . $conn->errno . ") " . $conn->error);
-            }
-            $stmt_update_schedule_done->bind_param("i",$control_number);
-            $stmt_update_schedule_done->execute();
+    if ($exam_status == 'PASSED' || $exam_status == 'FAILED') {
+        $sql_update_schedule_done = "UPDATE admin_booking SET Schedule = 'Completed' WHERE control_number = ?";
+        $stmt_update_schedule_done = $conn->prepare($sql_update_schedule_done);
+        if (!$stmt_update_schedule_done) {
+            die("Prepare failed (update schedule to done query): (" . $conn->errno . ") " . $conn->error);
         }
+        $stmt_update_schedule_done->bind_param("i", $control_number);
+        $stmt_update_schedule_done->execute();
     }
+}
 
-    $stmt_exam_status->close();
-                
-?>
+$stmt_exam_status->close();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,9 +21,9 @@
         .container {
             display: flex;
             justify-content: center;
-            align-items: flex-start; 
-            margin: 0 auto; 
-            max-width: 1200px; 
+            align-items: flex-start;
+            margin: 0 auto;
+            max-width: 1200px;
         }
 
         .calendar {
@@ -157,44 +158,45 @@
             .container {
                 flex-direction: column;
                 align-items: center;
-                justify-content: flex-start; 
+                justify-content: flex-start;
             }
 
             .calendar {
-                margin-left: 0px; 
-                margin-top: 2rem; 
+                margin-left: 0px;
+                margin-top: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="">
         <div class="">
             <div class="calendar mr-5" style="cursor: pointer;">
-              <header>
-                <h3></h3>
-                <nav>
-                  <button id="prev"></button>
-                  <button id="next"></button>
-                </nav>
-              </header>
-              <section>
-                <ul class="days">
-                  <li>Sun</li>
-                  <li>Mon</li>
-                  <li>Tue</li>
-                  <li>Wed</li>
-                  <li>Thu</li>
-                  <li>Fri</li>
-                  <li>Sat</li>
-                </ul>
-                <ul class="dates"></ul>
-              </section>
+                <header>
+                    <h3></h3>
+                    <nav>
+                        <button id="prev"></button>
+                        <button id="next"></button>
+                    </nav>
+                </header>
+                <section>
+                    <ul class="days">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="dates"></ul>
+                </section>
             </div>
         </div>
     </div>
     <div id="current-date" style="margin-top: 20px; font-size: 1.2rem; font-weight: bold;">
-  
+
     </div>
     <form id="dateForm" method="post" action="">
         <input type="hidden" id="selectedDate" name="selectedDate">
@@ -254,22 +256,22 @@
             document.querySelectorAll(".dates li:not(.inactive)").forEach((dateEl) => {
                 dateEl.addEventListener("click", (e) => {
                     if (e.currentTarget.classList.contains("disabled")) {
-                        return; 
+                        return;
                     }
 
-          
+
                     document.querySelectorAll('.dates li').forEach(d => d.classList.remove('selected'));
 
-               
+
                     e.currentTarget.classList.add('selected');
 
                     selectedDate = new Date(year, month, parseInt(e.target.textContent));
                 });
             });
 
-   
+
             prevButton.classList.toggle('disabled', month === 0 && year === new Date().getFullYear());
-       
+
             nextButton.classList.toggle('disabled', month === 11 && year === new Date().getFullYear());
         }
 
@@ -304,4 +306,5 @@
         renderCalendar();
     </script>
 </body>
+
 </html>

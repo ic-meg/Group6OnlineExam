@@ -49,5 +49,3 @@ while ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 echo json_encode($questions);
-
-?>

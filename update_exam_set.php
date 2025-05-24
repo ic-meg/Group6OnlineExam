@@ -10,7 +10,7 @@ if (isset($_SESSION['exam_id'])) {
 }
 
 
-$examSetTitle = $_POST['examSetTitle']; 
+$examSetTitle = $_POST['examSetTitle'];
 
 
 $sql = "UPDATE admin_exam_set SET title = ? WHERE exam_id = ?";
@@ -18,20 +18,19 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("si", $examSetTitle, $exam_id);
 
 if ($stmt->execute()) {
-   
+
     $stmt->close();
     $conn->close();
 
-    
+
     echo "<script>
         alert('Exam Set title updated successfully.');
         window.location.href = 'AdminPortalExamSet.php'; // Redirect to the same page or another if needed
     </script>";
-    exit(); 
+    exit();
 } else {
-    echo "Error: " . htmlspecialchars($stmt->error); 
+    echo "Error: " . htmlspecialchars($stmt->error);
 }
 
 $stmt->close();
 $conn->close();
-?>

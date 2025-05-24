@@ -10,7 +10,7 @@ function logoutRedirect() {
         
     }).then((result) => {
         if (result.isConfirmed) {
-           window.location.href = 'Guess.php';
+           window.location.href = 'index.php';
         }
     });
 }

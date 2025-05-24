@@ -449,8 +449,6 @@ function validateNumber(input) {
 
 
 // //Reset and Success Modal
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const resetButton = document.querySelector('button[name="savePersonal"][value="Reset Personal Information"]');
     const resetModal = new bootstrap.Modal(document.getElementById('resetModal'));
@@ -480,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Error resetting family background information.');
                 }
             };
-            xhr.send('action=reset'); // Modify according to your PHP script
+            xhr.send('action=reset');
         });
     }
 

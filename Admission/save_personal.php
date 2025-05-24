@@ -2,7 +2,7 @@
 include 'dbconn.php';
 session_start();
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_email'])) {
     echo 'User not logged in.';
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_email'])) {
 
 $email = $_SESSION['user_email'];
 
-// Retrieve POST data
+
 $firstName = isset($_POST['FirstName']) ? $_POST['FirstName'] : '';
 $middleName = isset($_POST['MiddleName']) ? $_POST['MiddleName'] : '';
 $lastName = isset($_POST['LastName']) ? $_POST['LastName'] : '';
@@ -30,10 +30,12 @@ $placeOfBirth = isset($_POST['PlaceOfBirth']) ? $_POST['PlaceOfBirth'] : '';
 $religion = isset($_POST['Religion']) ? $_POST['Religion'] : '';
 $indigenous = isset($_POST['Indigenous']) ? $_POST['Indigenous'] : '';
 
-// Validate required fields
-if (empty($firstName) || empty($lastName) || empty($region) || empty($province) || empty($town) || empty($barangay) || 
-    empty($street) || empty($zipCode) || empty($cellphoneNum) || empty($dateOfBirth) || empty($placeOfBirth) || 
-    empty($indigenous)) {
+
+if (
+    empty($firstName) || empty($lastName) || empty($region) || empty($province) || empty($town) || empty($barangay) ||
+    empty($street) || empty($zipCode) || empty($cellphoneNum) || empty($dateOfBirth) || empty($placeOfBirth) ||
+    empty($indigenous)
+) {
     echo 'All required fields must be filled out.';
     exit();
 }
@@ -48,7 +50,7 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $userID = $row['userID'];
 
-    // Insert or update personal info
+
     $stmt = $conn->prepare("INSERT INTO personalinfo (userID, FirstName, MiddleName, LastName, Suffix, Region, Province, Town, Barangay, 
         Street, ZipCode, CellphoneNumber, LandlineNumber, CivilStatus, Sex, DateOfBirth, PlaceOfBirth, Religion, Indigenous) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -58,13 +60,33 @@ if ($result && $result->num_rows > 0) {
         CivilStatus = VALUES(CivilStatus), Sex = VALUES(Sex), DateOfBirth = VALUES(DateOfBirth), PlaceOfBirth = VALUES(PlaceOfBirth), 
         Religion = VALUES(Religion), Indigenous = VALUES(Indigenous)");
 
-    $stmt->bind_param("isssssssssssssssss", $userID, $firstName, $middleName, $lastName, $suffix, $region, $province, $town, $barangay, $street, 
-        $zipCode, $cellphoneNum, $landlineNum, $civilStatus, $sex, $dateOfBirth, $placeOfBirth, $religion, $indigenous);
+    $stmt->bind_param(
+        "isssssssssssssssss",
+        $userID,
+        $firstName,
+        $middleName,
+        $lastName,
+        $suffix,
+        $region,
+        $province,
+        $town,
+        $barangay,
+        $street,
+        $zipCode,
+        $cellphoneNum,
+        $landlineNum,
+        $civilStatus,
+        $sex,
+        $dateOfBirth,
+        $placeOfBirth,
+        $religion,
+        $indigenous
+    );
 
     if ($stmt->execute()) {
-        echo 'Success'; 
+        echo 'Success';
     } else {
-        echo 'Error: ' . $stmt->error; 
+        echo 'Error: ' . $stmt->error;
     }
 } else {
     echo 'User not found.';
@@ -72,4 +94,3 @@ if ($result && $result->num_rows > 0) {
 
 $stmt->close();
 $conn->close();
-?>

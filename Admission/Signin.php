@@ -69,11 +69,9 @@
 <?php
     include 'dbconn.php';
     session_start();
-    require_once 'C:\xampp\htdocs\vendor/autoload.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
 
-    // init configuration
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
- 
     $dotenv->load();
     
     $clientID = $_ENV['CLIENT_ID'];
@@ -125,18 +123,10 @@
 
         if ($newUser) {
             echo "<script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Registration Successful!',
-                text: 'Redirecting to Admission Information...',
-                confirmButtonColor: '#448b4f',
-                confirmButtonTextColor: '#ffffff'
-            }).then(function() {
                 window.location.href = 'applicationform.php';
-            });
             </script>";
         } elseif ($hasControlNumber) {
-            // Redirect to a page or show a message indicating control number is already assigned
+           
             echo "<script>
             Swal.fire({
                 icon: 'info',
@@ -145,7 +135,7 @@
                 confirmButtonColor: '#448b4f',
                 confirmButtonTextColor: '#ffffff'
             }).then(function() {
-                window.location.href = '../Guess.php'; // Redirect to the exam page or any other appropriate page
+                window.location.href = '../index.php'; // Redirect to the exam page or any other appropriate page
             });
             </script>";
         } else {

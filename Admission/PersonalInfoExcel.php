@@ -1,5 +1,6 @@
 <?php
-require 'C:\xampp\htdocs\vendor\autoload.php';
+
+require '../vendor\autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -72,7 +73,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 
-$filename = 'C:\xampp\htdocs\Group6OnlineExam\Admission\PersonalInfo2024.xlsx';
+$filename = 'C:\xampp\htdocs\OnlineExam\Admission\PersonalInfo2024.xlsx';
 $writer = new Xlsx($spreadsheet);
 
 

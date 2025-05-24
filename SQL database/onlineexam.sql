@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2024 at 07:35 AM
+-- Generation Time: May 24, 2025 at 02:10 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -67,9 +67,7 @@ CREATE TABLE `admin_booking` (
 --
 
 INSERT INTO `admin_booking` (`book_id`, `control_number`, `date`, `time`, `Schedule`, `created_at`) VALUES
-(1, 31143, '2024-08-24', '12:30:00', 'Completed', '2024-08-24 04:26:03'),
-(2, 5555, '2024-08-27', '12:30:00', 'Scheduled', '2024-08-27 04:15:31'),
-(3, 21664, '2024-08-27', '13:00:00', 'Scheduled', '2024-08-27 04:35:30');
+(6, 38710, '2025-05-24', '20:00:00', 'Completed', '2025-05-24 12:02:45');
 
 -- --------------------------------------------------------
 
@@ -268,8 +266,7 @@ CREATE TABLE `imported_control_numbers` (
 --
 
 INSERT INTO `imported_control_numbers` (`control_number`, `firstname`, `lastname`, `email`) VALUES
-('21664', 'Jennie', 'Kim', 'fabianmeg74@gmail.com'),
-('31143', 'Meg', 'Fabian', 'megangeline08@gmail.com');
+('38710', 'Meg', 'Fabian', 'fabian.megangeline2003@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -339,7 +336,41 @@ INSERT INTO `student_answer_logic` (`logic_id`, `control_number`, `Answer`, `que
 (65, 21664, 'Silence', 9),
 (66, 21664, 'Wet', 6),
 (67, 21664, 'Take naps during the day', 8),
-(68, 21664, 'Teapot', 17);
+(68, 21664, 'Teapot', 17),
+(69, 29182, 'He\'s not sleeping at all', 8),
+(70, 29182, 'Wet', 6),
+(71, 29182, 'All mammals are animals.', 3),
+(72, 29182, 'Left hand', 11),
+(73, 29182, 'The letter \'M\'', 13),
+(74, 29182, 'Piano', 16),
+(75, 29182, 'All philosophers are writers.', 21),
+(76, 29182, 'Teetotaler', 17),
+(77, 29182, 'Either the cake is chocolate or vanilla. The cake is not vanilla. Therefore, the cake is chocolate.', 20),
+(78, 29182, 'All rectangles are squares.', 2),
+(79, 29182, 'Your name', 18),
+(80, 29182, 'Ton', 14),
+(81, 29182, 'Tomorrow', 7),
+(82, 29182, 'Keyboard', 19),
+(83, 29182, 'Deductive reasoning', 4),
+(84, 29182, 'Silence', 9),
+(85, 29182, 'The letter \'O\'', 15),
+(86, 38710, 'Silence', 9),
+(87, 38710, 'The letter \'M\'', 13),
+(88, 38710, 'Piano', 16),
+(89, 38710, 'All mammals are animals.', 3),
+(90, 38710, 'Left hand', 11),
+(91, 38710, 'Teapot', 17),
+(92, 38710, 'Inductive reasoning', 4),
+(93, 38710, 'The letter \'M\'', 15),
+(94, 38710, 'No rectangles are squares.', 2),
+(95, 38710, 'Keyboard', 19),
+(96, 38710, 'He\'s not sleeping at all', 8),
+(97, 38710, 'Wet', 6),
+(98, 38710, 'If the temperature drops below freezing, the lake will freeze. The temperature has dropped below freezing. Therefore, the lake will freeze.', 20),
+(99, 38710, 'Your name', 18),
+(100, 38710, 'Tomorrow', 7),
+(101, 38710, 'Not', 14),
+(102, 38710, 'Some philosophers are not writers', 21);
 
 -- --------------------------------------------------------
 
@@ -376,7 +407,43 @@ INSERT INTO `student_answer_math` (`mathID`, `control_number`, `Answer`, `questi
 (15, 31143, '200 km', 16),
 (16, 31143, '16', 10),
 (17, 31143, '360 degrees ', 23),
-(18, 31143, '15', 22);
+(18, 31143, '15', 22),
+(19, 29182, '45', 17),
+(20, 29182, '180 degrees', 20),
+(21, 29182, '6', 6),
+(22, 29182, '3.14', 5),
+(23, 29182, '60', 22),
+(24, 29182, '2/5', 21),
+(25, 29182, '6', 19),
+(26, 29182, '33', 9),
+(27, 29182, '15 cm', 8),
+(28, 29182, '9', 13),
+(29, 29182, '360 degrees ', 23),
+(30, 29182, '31.4 cm', 18),
+(31, 29182, '7/8', 12),
+(32, 29182, '7', 10),
+(33, 29182, '45 degrees', 11),
+(34, 29182, '6', 15),
+(35, 29182, '120 km', 16),
+(36, 29182, '8', 14),
+(37, 38710, '55', 17),
+(38, 38710, '180 degrees', 20),
+(39, 38710, '9', 6),
+(40, 38710, '3.14', 5),
+(41, 38710, '720', 22),
+(42, 38710, '5/6', 21),
+(43, 38710, '5', 19),
+(44, 38710, '33', 9),
+(45, 38710, '15 cm', 8),
+(46, 38710, '9', 13),
+(47, 38710, 'T270 degrees', 23),
+(48, 38710, '31.4 cm', 18),
+(49, 38710, '5/6', 12),
+(50, 38710, '16', 10),
+(51, 38710, '90 degrees', 11),
+(52, 38710, '8', 15),
+(53, 38710, '160 km', 16),
+(54, 38710, '8', 14);
 
 -- --------------------------------------------------------
 
@@ -413,7 +480,61 @@ INSERT INTO `student_answer_reading_comprehension` (`reading_id`, `control_numbe
 (15, 31143, 'Logging, agriculture, and urbanization', 16),
 (16, 31143, 'Unique plant and animal species', 17),
 (17, 31143, 'Emergent layer', 18),
-(18, 31143, 'Birds', 19);
+(18, 31143, 'Birds', 19),
+(19, 29182, 'Four', 2),
+(20, 29182, 'Tiny scales', 3),
+(21, 29182, 'Larva', 4),
+(22, 29182, 'Pupa (chrysalis)  ', 5),
+(23, 29182, 'Nectar from flowers', 6),
+(24, 29182, 'Long, coiled proboscis', 7),
+(25, 29182, 'For camouflage or warning signals', 8),
+(26, 29182, 'Pupa', 9),
+(27, 29182, 'In many parts of the world', 10),
+(28, 29182, 'Temperate forest', 11),
+(29, 29182, 'Very little', 12),
+(30, 29182, 'They absorb carbon dioxide and produce oxygen', 13),
+(31, 29182, 'Forest floor', 14),
+(32, 29182, 'They are being planted', 15),
+(33, 29182, 'Logging, agriculture, and urbanization', 16),
+(34, 29182, 'Unique plant and animal species', 17),
+(35, 29182, 'Understory', 18),
+(36, 29182, 'Mammals', 19),
+(37, 29182, 'Four', 2),
+(38, 29182, 'Tiny scales', 3),
+(39, 29182, 'Larva', 4),
+(40, 29182, 'Pupa (chrysalis)  ', 5),
+(41, 29182, 'Nectar from flowers', 6),
+(42, 29182, 'Long, coiled proboscis', 7),
+(43, 29182, 'For camouflage or warning signals', 8),
+(44, 29182, 'Pupa', 9),
+(45, 29182, 'In many parts of the world', 10),
+(46, 29182, 'Temperate forest', 11),
+(47, 29182, 'Very little', 12),
+(48, 29182, 'They absorb carbon dioxide and produce oxygen', 13),
+(49, 29182, 'Forest floor', 14),
+(50, 29182, 'They are being planted', 15),
+(51, 29182, 'Logging, agriculture, and urbanization', 16),
+(52, 29182, 'Unique plant and animal species', 17),
+(53, 29182, 'Understory', 18),
+(54, 29182, 'Mammals', 19),
+(55, 38710, 'Four', 2),
+(56, 38710, 'Tiny scales', 3),
+(57, 38710, 'Larva', 4),
+(58, 38710, 'Pupa (chrysalis)  ', 5),
+(59, 38710, 'Nectar from flowers', 6),
+(60, 38710, 'Long, coiled proboscis', 7),
+(61, 38710, 'For camouflage or warning signals', 8),
+(62, 38710, 'Pupa', 9),
+(63, 38710, 'Only in tropical areas', 10),
+(64, 38710, 'Temperate forest', 11),
+(65, 38710, 'High amounts', 12),
+(66, 38710, 'They absorb carbon dioxide and produce oxygen', 13),
+(67, 38710, 'Emergent layer', 14),
+(68, 38710, 'They are being destroyed', 15),
+(69, 38710, 'Logging, agriculture, and urbanization', 16),
+(70, 38710, 'Unique plant and animal species', 17),
+(71, 38710, 'Emergent layer', 18),
+(72, 38710, 'Reptiles', 19);
 
 -- --------------------------------------------------------
 
@@ -449,7 +570,41 @@ INSERT INTO `student_answer_science` (`science_id`, `control_number`, `Answer`, 
 (14, 31143, 'Tiger', 10),
 (15, 31143, 'Saturn', 17),
 (16, 31143, 'Evaporation', 9),
-(17, 31143, 'Earth', 2);
+(17, 31143, 'Earth', 2),
+(18, 29182, 'Skin', 12),
+(19, 29182, 'Carbon Dioxide', 11),
+(20, 29182, 'Mars', 2),
+(21, 29182, 'Diamond', 4),
+(22, 29182, 'Earth', 17),
+(23, 29182, 'Isaac Newton', 15),
+(24, 29182, 'Mars', 13),
+(25, 29182, 'Cumulus', 6),
+(26, 29182, 'Evaporation', 9),
+(27, 29182, 'Mechanical', 16),
+(28, 29182, 'Photosynthesis', 3),
+(29, 29182, 'Roots', 8),
+(30, 29182, 'Elephant', 10),
+(31, 29182, 'Magnetic force', 5),
+(32, 29182, 'Nucleus', 1),
+(33, 29182, 'H2O', 7),
+(34, 29182, 'Ohm', 14),
+(35, 38710, 'Ohm', 14),
+(36, 38710, 'Monkey', 10),
+(37, 38710, 'Nimbostratus', 6),
+(38, 38710, 'Mercury ', 13),
+(39, 38710, 'Evaporation', 9),
+(40, 38710, 'Jupiter', 17),
+(41, 38710, 'Gravitational force', 5),
+(42, 38710, 'Leaves', 8),
+(43, 38710, 'H2O', 7),
+(44, 38710, 'Diamond', 4),
+(45, 38710, 'Mars', 2),
+(46, 38710, 'Chemical', 16),
+(47, 38710, 'Photosynthesis', 3),
+(48, 38710, 'Albert Einstein', 15),
+(49, 38710, 'Nitrogen', 11),
+(50, 38710, 'Heart', 12),
+(51, 38710, 'Mitochondria', 1);
 
 -- --------------------------------------------------------
 
@@ -477,8 +632,7 @@ CREATE TABLE `student_examination_score` (
 --
 
 INSERT INTO `student_examination_score` (`studExam_id`, `control_number`, `date`, `timeStarted`, `duration`, `logic_id`, `math_id`, `science_id`, `reading_id`, `total_score`, `status`, `submittedAt`) VALUES
-(2, 31143, '2024-08-24', '12:30:00', '00:00:00', 14, 4, 11, 11, 40, 'FAILED', '2024-08-24 04:13:42'),
-(4, 21664, '2024-08-27', '13:00:00', '00:00:00', 13, 0, 0, 0, 0, '', '2024-08-27 05:32:00');
+(1, 38710, '2025-05-24', '20:00:00', '00:00:00', 11, 5, 10, 12, 38, 'FAILED', '2025-05-24 12:02:03');
 
 -- --------------------------------------------------------
 
@@ -498,11 +652,7 @@ CREATE TABLE `useraccount` (
 --
 
 INSERT INTO `useraccount` (`control_number`, `username`, `password`, `created_at`) VALUES
-(5555, 'Lisa', 'Lalalisa', '2024-08-26 13:27:08'),
-(21664, 'jen', 'Jennpass00!', '2024-08-26 09:54:29'),
-(31143, 'meg', 'Newpass00!', '2024-07-31 22:00:00'),
-(31322, 'jisoo', 'jisoo', '2024-08-26 13:26:20'),
-(44444, 'Rose', 'Chaeyong', '2024-08-26 13:26:39');
+(38710, 'student', 'Studpass00@@', '2025-05-24 11:54:14');
 
 --
 -- Indexes for dumped tables
@@ -616,7 +766,7 @@ ALTER TABLE `adminaccount`
 -- AUTO_INCREMENT for table `admin_booking`
 --
 ALTER TABLE `admin_booking`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `admin_logic`
 --
@@ -641,32 +791,32 @@ ALTER TABLE `admin_science`
 -- AUTO_INCREMENT for table `student_answer_logic`
 --
 ALTER TABLE `student_answer_logic`
-  MODIFY `logic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `logic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT for table `student_answer_math`
 --
 ALTER TABLE `student_answer_math`
-  MODIFY `mathID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `mathID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `student_answer_reading_comprehension`
 --
 ALTER TABLE `student_answer_reading_comprehension`
-  MODIFY `reading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `reading_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 --
 -- AUTO_INCREMENT for table `student_answer_science`
 --
 ALTER TABLE `student_answer_science`
-  MODIFY `science_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `science_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `student_examination_score`
 --
 ALTER TABLE `student_examination_score`
-  MODIFY `studExam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `studExam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `useraccount`
 --
 ALTER TABLE `useraccount`
-  MODIFY `control_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44445;
+  MODIFY `control_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38711;
 --
 -- Constraints for dumped tables
 --

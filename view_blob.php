@@ -4,7 +4,7 @@ include "dbcon.php";
 if (isset($_GET['file'])) {
     $file = $_GET['file'];
 
-    
+
     $sql = "SELECT * FROM requirements WHERE form137 = ? OR form138 = ? OR PSA = ? OR 1x1 = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $file, $file, $file, $file);
@@ -24,7 +24,7 @@ if (isset($_GET['file'])) {
             $fileContent = $row['1x1'];
         }
 
-        
+
         header("Content-Type: application/octet-stream");
         header("Content-Disposition: attachment; filename=" . basename($file));
         echo $fileContent;
@@ -35,4 +35,3 @@ if (isset($_GET['file'])) {
     $stmt->close();
     $conn->close();
 }
-?>

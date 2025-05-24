@@ -1,13 +1,12 @@
-<?php 
+<?php
 
 include "dbcon.php";
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +19,7 @@ include "dbcon.php";
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap">
     <link rel="stylesheet" href="SPEDR.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
 </head>
 
@@ -57,7 +56,7 @@ include "dbcon.php";
                 <div class="header-icons">
                     <img src="public/icons8-notification-48.png" alt="Notification Icon" class="notification-icon">
                     <script src="Redirect.js"></script>
-                   
+
                     <button class="Btn">
                         <div class="sign">
                             <svg viewBox="0 0 512 512">
@@ -102,13 +101,16 @@ include "dbcon.php";
                     <div class="row">
                         <div class="col-md-6 detail">
                             <img src="public/items.png" alt="items" class="category-icon">
-                            70 items</div>
+                            70 items
+                        </div>
                         <div class="col-md-6 detail">
                             <img src="public/block.png" alt="items" class="category-icon">
-                            Cheating is prohibited.</div>
+                            Cheating is prohibited.
+                        </div>
                         <div class="col-md-6 detail">
                             <img src="public/time.png" alt="items" class="category-icon">
-                            1 hour</div>
+                            1 hour
+                        </div>
                     </div>
                     <div class="exam-footer text-center mt-4">
                         <p class="mb-0">Good luck on the exam!</p>
@@ -116,17 +118,18 @@ include "dbcon.php";
                     <hr style="color: gray;">
                     <div class="text-center mt-2">
                         <button class="proceed-button" onclick="exam()" id="proceed-button">Proceed</button>
-                       
-            
-                    </div>                                    
+
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-       document.getElementById('proceed-button').addEventListener('click', () => {
-            window.location.href = 'StudentExamLogic.php'; 
+        document.getElementById('proceed-button').addEventListener('click', () => {
+            window.location.href = 'StudentExamLogic.php';
         });
+
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             var content = document.getElementById('content');
@@ -141,9 +144,9 @@ include "dbcon.php";
                 schoolName.style.display = 'none';
             }
         }
- 
     </script>
 
-        
+
 </body>
+
 </html>

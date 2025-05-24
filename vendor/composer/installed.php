@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => null,
+        'reference' => '79e79b01ca14ff25cfc119e8cba828f670615916',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => null,
+            'reference' => '79e79b01ca14ff25cfc119e8cba828f670615916',
             'dev_requirement' => false,
         ),
         'dompdf/dompdf' => array(
@@ -155,12 +155,12 @@
             'dev_requirement' => false,
         ),
         'phpmailer/phpmailer' => array(
-            'pretty_version' => 'v6.9.1',
-            'version' => '6.9.1.0',
+            'pretty_version' => 'v6.10.0',
+            'version' => '6.10.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpmailer/phpmailer',
             'aliases' => array(),
-            'reference' => '039de174cd9c17a8389754d3b877a2ed22743e18',
+            'reference' => 'bf74d75a1fde6beaa34a0ddae2ec5fce0f72a144',
             'dev_requirement' => false,
         ),
         'phpoffice/phpspreadsheet' => array(
@@ -182,12 +182,12 @@
             'dev_requirement' => false,
         ),
         'phpseclib/phpseclib' => array(
-            'pretty_version' => '3.0.39',
-            'version' => '3.0.39.0',
+            'pretty_version' => '3.0.43',
+            'version' => '3.0.43.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpseclib/phpseclib',
             'aliases' => array(),
-            'reference' => '211ebc399c6e73c225a018435fe5ae209d1d1485',
+            'reference' => '709ec107af3cb2f385b9617be72af8cf62441d02',
             'dev_requirement' => false,
         ),
         'psr/cache' => array(
@@ -248,12 +248,12 @@
             'dev_requirement' => false,
         ),
         'sabberworm/php-css-parser' => array(
-            'pretty_version' => 'v8.6.0',
-            'version' => '8.6.0.0',
+            'pretty_version' => 'v8.8.0',
+            'version' => '8.8.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../sabberworm/php-css-parser',
             'aliases' => array(),
-            'reference' => 'd2fb94a9641be84d79c7548c6d39bbebba6e9a70',
+            'reference' => '3de493bdddfd1f051249af725c7e0d2c38fed740',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include "dbcon.php";
 
@@ -27,8 +27,8 @@ if (!$result_student) {
 
 if ($result_student->num_rows > 0) {
     $row_student = $result_student->fetch_assoc();
-    
-   
+
+
     $sql_schedule = "SELECT Schedule, date, time FROM admin_booking WHERE control_number = ?";
     $stmt_schedule = $conn->prepare($sql_schedule);
     if (!$stmt_schedule) {
@@ -55,13 +55,13 @@ if ($result_student->num_rows > 0) {
             $current_datetime = new DateTime();
 
             if ($current_datetime > $scheduled_datetime) {
-               
+
                 $sql_update_exam_status = "UPDATE admin_booking SET Schedule = 'Missed' WHERE control_number = ?";
                 $stmt_update_exam_status = $conn->prepare($sql_update_exam_status);
                 $stmt_update_exam_status->bind_param("s", $control_number);
                 $stmt_update_exam_status->execute();
 
-               
+
                 $missed_message = "Sorry, you missed your scheduled exam on " . date('F j, Y', strtotime($schedule_date)) . ' at ' . htmlspecialchars($formatted_time);
             } else {
                 $exam_window_start = clone $scheduled_datetime;
@@ -69,9 +69,11 @@ if ($result_student->num_rows > 0) {
                 $exam_window_start->modify('-30 minutes');
                 $exam_window_end->modify('+30 minutes');
 
-                if ($current_datetime->format('Y-m-d') == $schedule_date && 
-                    $current_datetime >= $exam_window_start && $current_datetime <= $exam_window_end) {
-                    echo "<script>window.location.href = 'http://localhost/Group6OnlineExam/StudentExam/StudentExamDescription.php';</script>";
+                if (
+                    $current_datetime->format('Y-m-d') == $schedule_date &&
+                    $current_datetime >= $exam_window_start && $current_datetime <= $exam_window_end
+                ) {
+                    echo "<script>window.location.href = 'http://localhost/OnlineExam/StudentExam/StudentExamDescription.php';</script>";
                     exit();
                 }
                 $missed_message = '';
@@ -79,7 +81,6 @@ if ($result_student->num_rows > 0) {
         } else {
             $missed_message = '';
         }
-
     } else {
         $schedule_status = '';
         $schedule_date = '';
@@ -88,9 +89,6 @@ if ($result_student->num_rows > 0) {
     }
 
     $stmt_schedule->close();
-
-
-
 } else {
     $schedule_status = '';
     $schedule_date = '';
@@ -105,6 +103,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,19 +115,20 @@ $conn->close();
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css" />
     <link rel="stylesheet" href="SPENA.css">
 </head>
 <style>
-       .header h4 {
-            font-family: var(--font-montserrat);
-        }
+    .header h4 {
+        font-family: var(--font-montserrat);
+    }
 </style>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -160,10 +160,10 @@ $conn->close();
                 <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
                 <h4>Exam</h4>
                 <div class="header-icons">
-                <?php include "notif.php"; ?>
+                    <?php include "notif.php"; ?>
 
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                 
+
                     <script src="redirect.js"></script>
                     <button class="Btn">
                         <div class="sign">
@@ -201,13 +201,12 @@ $conn->close();
                                 } elseif ($schedule_status == 'Scheduled') {
                                     echo '<h5>Your exam is scheduled for ' . date('F j, Y', strtotime($schedule_date)) . ' at ' . htmlspecialchars($formatted_time) . '.</h5>';
                                     echo '<p>Please wait for further instructions and arrive at least 30 minutes before the scheduled time.</p>';
-                                } elseif ($schedule_status == 'Missed'){
+                                } elseif ($schedule_status == 'Missed') {
                                     echo '<h5>Sorry, you missed your exam scheduled for ' . date('F j, Y', strtotime($schedule_date)) . ' at ' . htmlspecialchars($formatted_time) . '.Please contact the administration for further instructions.</h5>';
-                                }else if($schedule_status == 'Completed' || $schedule_status == 'FAILED' ){
+                                } else if ($schedule_status == 'Completed' || $schedule_status == 'FAILED') {
                                     echo '<h5>Congratulations, you completed your exam. See the <a href="StudentExamSubmitted.php">results.</a></h5>';
-                                } 
-                                else {
-                                    
+                                } else {
+
                                     echo '<h5>Your exam schedule has not yet been confirmed.</h5>';
                                     echo '<h5>Please wait for your schedule.</h5>';
                                 }
@@ -236,4 +235,5 @@ $conn->close();
         }
     </script>
 </body>
+
 </html>

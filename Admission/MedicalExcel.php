@@ -1,5 +1,5 @@
 <?php
-require 'C:\xampp\htdocs\vendor\autoload.php';
+require '../vendor\autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -29,7 +29,7 @@ if (!$result) {
     die("Query failed: " . $conn->error);
 }
 
-$rowNumber = 2; 
+$rowNumber = 2;
 
 
 while ($row = $result->fetch_assoc()) {
@@ -42,7 +42,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 
-$filename = 'C:\xampp\htdocs\Group6OnlineExam\Admission\MedicalHistory2024.xlsx';
+$filename = 'C:\xampp\htdocs\OnlineExam\Admission\MedicalHistory2024.xlsx';
 $writer = new Xlsx($spreadsheet);
 
 
@@ -53,4 +53,3 @@ if (file_exists($filename)) {
 $writer->save($filename);
 
 $conn->close();
-?>

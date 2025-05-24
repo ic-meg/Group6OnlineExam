@@ -1,10 +1,9 @@
 <?php
 include 'dbcon.php';
-require 'C:\xampp\htdocs\vendor\autoload.php';
+require './vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'C:/Users/Meg Angeline Fabian/phpmailer/vendor/autoload.php';
-
 
 use Dompdf\Dompdf;
 
@@ -30,7 +29,7 @@ if ($result->num_rows > 0) {
     $total_math_score = $row['math_id'];
     $total_science_score = $row['science_id'];
     $total_reading_score = $row['reading_id'];
-    $status = $row['status'];  
+    $status = $row['status'];
     $total_score = $row['total_score'];
 } else {
     echo "Make sure you took the exam, in order to generate the PDF file of your exam result. ";
@@ -56,7 +55,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 $percentage = ($total_score / 70) * 100;
-$formatted_percentage = number_format($percentage, 2) . '%'; 
+$formatted_percentage = number_format($percentage, 2) . '%';
 $date = date('Y-m-d');
 
 $html = '
@@ -195,24 +194,29 @@ $html = '
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream("ExamResult$control_number.pdf", array("Attachment" => 0)); 
+$dompdf->stream("ExamResult$control_number.pdf", array("Attachment" => 0));
 $pdfFilePath = __DIR__ . "/ExamResult_$control_number.pdf";
 file_put_contents($pdfFilePath, $dompdf->output());
 
+require_once __DIR__ . '../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 
-function sendemail_notify($email, $pdfFilePath) {
+function sendemail_notify($email, $pdfFilePath)
+{
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'fabian.megangeline2003@gmail.com';
-        $mail->Password = 'upqj akck ojis wmsa'; 
+        $mail->Username = $_ENV['MAIL_USERNAME'];
+        $mail->Password = $_ENV['MAIL_PASSWORD'];
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        $mail->setFrom('fabian.megangeline2003@gmail.com', 'Online Entrance Exam');
+        $mail->setFrom($_ENV['MAIL_USERNAME'], 'Online Entrance Exam');
         $mail->addAddress($email);
 
         $mail->isHTML(true);
@@ -225,10 +229,9 @@ function sendemail_notify($email, $pdfFilePath) {
             <p>Best regards,<br>The CvSU Online Entrance Exam Team</p>
         ";
 
-        $mail->addAttachment($pdfFilePath); 
+        $mail->addAttachment($pdfFilePath);
 
         $mail->send();
-    
     } catch (Exception $e) {
         echo "<p>Email could not be sent to: " . htmlspecialchars($email) . "</p>";
         echo "<p>Error: {$mail->ErrorInfo}</p>";
@@ -239,4 +242,3 @@ sendemail_notify($email, $pdfFilePath);
 
 
 unlink($pdfFilePath);
-?>

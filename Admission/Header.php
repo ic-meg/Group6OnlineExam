@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Header</title>
     <link rel="stylesheet" href="Header.css">
     <style>
-         .home {
-            display: block; 
-            
-            color: #fff; 
-            
-            padding: 10px; 
-            
-            border-radius: 5px; 
-            text-align: center; 
+        .home {
+            display: block;
+
+            color: #fff;
+
+            padding: 10px;
+
+            border-radius: 5px;
+            text-align: center;
         }
-        
-     
     </style>
 </head>
+
 <body>
-<div class="d-flex">
+    <div class="d-flex">
         <div class="flex-grow-1">
             <div class="header d-flex justify-content-between">
                 <div class="logo-and-title d-flex align-items-center">
@@ -29,9 +29,9 @@
                     <h4>CvSU IMUS</h4>
                 </div>
                 <div class="header-icons">
-                <a href="applicationform.php" class="home-link" style="text-decoration: none; ">
-                    <div class="home h6">Home</div>
-                </a>
+                    <a href="applicationform.php" class="home-link" style="text-decoration: none; ">
+                        <div class="home h6">Home</div>
+                    </a>
 
                     <button class="Btn">
                         <div class="sign">
@@ -45,28 +45,29 @@
                 </div>
             </div>
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById('nav-menu');
-            menu.classList.toggle('show');
-        }
+            <script>
+                function toggleMenu() {
+                    var menu = document.getElementById('nav-menu');
+                    menu.classList.toggle('show');
+                }
 
-        function logout() {
-        Swal.fire({
-            title: "Log out",
-            text: "Are you sure do you want to log out?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#448b4f",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, log out!"
-            
-        }).then((result) => {
-            if (result.isConfirmed) {
-            window.location.href = 'Signin.php';
-            }
-        });
-}
-    </script>
+                function logout() {
+                    Swal.fire({
+                        title: "Log out",
+                        text: "Are you sure do you want to log out?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#448b4f",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, log out!"
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'Signin.php';
+                        }
+                    });
+                }
+            </script>
 </body>
+
 </html>

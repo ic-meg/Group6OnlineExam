@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "dbcon.php"; 
+include "dbcon.php";
 
 
 $username = $_POST['username'];
@@ -9,7 +9,7 @@ $adminId = $_POST['adminId'];
 
 
 if ($adminId) {
-    
+
     $sql = "UPDATE adminaccount SET username = ?, password = ? WHERE admin_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssi", $username, $password, $adminId);
@@ -27,4 +27,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-?>

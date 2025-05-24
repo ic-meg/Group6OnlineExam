@@ -9,15 +9,15 @@ if (!isset($_SESSION['user_id'])) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     echo json_encode($_POST);
     exit;
 
- 
+
     if (isset($_POST['category']) && isset($_POST['answers'])) {
         $examinee_id = $_SESSION['user_id'];
-        $category = $_POST['category']; 
-        $answers = $_POST['answers'];  
+        $category = $_POST['category'];
+        $answers = $_POST['answers'];
 
         $query_student_id = "SELECT Student_ID FROM student WHERE examinee_id = ?";
         $stmt_student_id = $conn->prepare($query_student_id);
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         foreach ($answers as $questionID => $selectedAnswer) {
-  
+
             $sql_insert = "INSERT INTO $table_name (student_id, questionID, Answer)
                            VALUES (?, ?, ?)";
             $stmt_insert = $conn->prepare($sql_insert);
@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt_insert->bind_param("iis", $student_id, $questionID, $selectedAnswer);
             if ($stmt_insert->execute()) {
-               
             } else {
                 die(json_encode(['success' => false, 'message' => 'Error inserting answers: ' . $conn->error]));
             }

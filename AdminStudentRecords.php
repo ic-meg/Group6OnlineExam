@@ -4,7 +4,7 @@ include "dbcon.php";
 if (isset($_POST['btn_vw'])) {
     $contol_number = $_POST['btn_vw'];
 
- 
+
     $sql = "SELECT * FROM requirements WHERE student_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $student_id);
@@ -12,17 +12,17 @@ if (isset($_POST['btn_vw'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        
+
         $base_folder = "RequiredDocu/";
 
         while ($row = $result->fetch_assoc()) {
-           
+
             $form137_path = (strpos($row['form137'], $base_folder) === false && !is_absolute_path($row['form137'])) ? $base_folder . $row['form137'] : $row['form137'];
             $form138_path = (strpos($row['form138'], $base_folder) === false && !is_absolute_path($row['form138'])) ? $base_folder . $row['form138'] : $row['form138'];
             $psa_path = (strpos($row['PSA'], $base_folder) === false && !is_absolute_path($row['PSA'])) ? $base_folder . $row['PSA'] : $row['PSA'];
             $pic1x1_path = (strpos($row['1x1'], $base_folder) === false && !is_absolute_path($row['1x1'])) ? $base_folder . $row['1x1'] : $row['1x1'];
 
-            
+
             $form137_filename = basename($form137_path);
             $form138_filename = basename($form138_path);
             $psa_filename = basename($psa_path);
@@ -37,7 +37,8 @@ if (isset($_POST['btn_vw'])) {
 }
 
 
-function is_absolute_path($path) {
+function is_absolute_path($path)
+{
     return ($path[0] === '/' || $path[0] === '\\' || strpos($path, ':') !== false);
 }
 
@@ -206,7 +207,8 @@ function is_absolute_path($path) {
             .iconsandLabel {
                 font-family: var(--font-montserrat);
             }
-            .sidebar{
+
+            .sidebar {
                 background-color: #13443E;
             }
         }
@@ -219,8 +221,6 @@ function is_absolute_path($path) {
 
     if (isset($_POST['btn_vw'])) {
         $student_id = $_POST['btn_vw'];
-        
-        
     }
     ?>
     <!-------- NAR BAR ------>
@@ -256,7 +256,7 @@ function is_absolute_path($path) {
                 <div class="header-icons">
                     <img src="icons8-notification-48.png" alt="Notification Icon" class="notification-icon">
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                 
+
                     <script src="redirect.js"></script>
                     <button class="Btn">
                         <div class="sign">
@@ -279,37 +279,37 @@ function is_absolute_path($path) {
                                     <img src="profile-pic.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3">
                                         <?php
-                                        
+
                                         $stmt = $conn->prepare("SELECT firstname, middlename, lastname FROM personal_details WHERE student_id = ?");
                                         $stmt->bind_param("i", $student_id);
 
-                                      
+
                                         $stmt->execute();
 
-                                        
+
                                         $stmt->bind_result($firstname, $middlename, $lastname);
 
-                                   
+
                                         if ($stmt->fetch()) {
                                             echo $firstname . " " . $middlename . " " . $lastname;
                                         } else {
                                             echo "No student found with ID: " . $student_id;
                                         }
 
-                                     
+
                                         $stmt->close();
                                         ?>
                                     </h5>
                                     <p class="text-muted mb-3">
                                         <?php
-                                       
+
                                         $stmt = $conn->prepare("SELECT Examinee_ID FROM student WHERE Student_ID = ?");
                                         $stmt->bind_param("i", $student_id);
 
-                                   
+
                                         $stmt->execute();
 
-                                 
+
                                         $stmt->bind_result($Examinee_ID);
 
                                         if ($stmt->fetch()) {
@@ -318,15 +318,15 @@ function is_absolute_path($path) {
                                             echo "No student found with ID: " . $Student_ID;
                                         }
 
-                                 
+
                                         $stmt->close();
                                         ?>
                                     </p>
                                     <div class="d-flex justify-content-center mb-2">
-                                    <form method="post" action="AdminSchedule.php">
-                                        <input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
-                                        <button type="submit" name="btn_schd" value="<?php echo $student_id; ?>" class="btn1">Schedule Now</button>
-                                    </form>
+                                        <form method="post" action="AdminSchedule.php">
+                                            <input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
+                                            <button type="submit" name="btn_schd" value="<?php echo $student_id; ?>" class="btn1">Schedule Now</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -337,22 +337,22 @@ function is_absolute_path($path) {
                                     <ul class="list-group list-group-flush rounded-3">
                                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                             <img class="admin-portal-viewexaminee-child5" src="./public/rectangle-103@2x.png" />
-                                            <p class="form137 mb-0"><a href="<?php echo htmlspecialchars($form137_path); ?>" target="_blank"><?php echo $form137_filename?></a></p>
+                                            <p class="form137 mb-0"><a href="<?php echo htmlspecialchars($form137_path); ?>" target="_blank"><?php echo $form137_filename ?></a></p>
                                             <i class="fas fa-globe fa-lg text-warning"></i>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                             <img class="admin-portal-viewexaminee-child6" src="./public/rectangle-103@2x.png" />
-                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($form138_path); ?>" target="_blank"><?php echo $form138_filename?></a></p>
+                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($form138_path); ?>" target="_blank"><?php echo $form138_filename ?></a></p>
                                             <i class="fab fa-github fa-lg text-body"></i>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                                             <img class="admin-portal-viewexaminee-child7" src="./public/rectangle-103@2x.png" />
-                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($psa_path); ?>" target="_blank"><?php echo $psa_filename?></a></p>
+                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($psa_path); ?>" target="_blank"><?php echo $psa_filename ?></a></p>
                                             <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <img class="admin-portal-viewexaminee-child5" src="./public/rectangle-103@2x.png" />
-                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($pic1x1_path); ?>" target="_blank"><?php echo $pic1x1_filename?></a></p>
+                                            <img class="admin-portal-viewexaminee-child5" src="./public/rectangle-103@2x.png" />
+                                            <p class="mb-0"><a href="<?php echo htmlspecialchars($pic1x1_path); ?>" target="_blank"><?php echo $pic1x1_filename ?></a></p>
                                             <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
                                         </li>
                                     </ul>
@@ -375,10 +375,10 @@ function is_absolute_path($path) {
                                                 $stmt = $conn->prepare("SELECT firstname, middlename, lastname FROM personal_details WHERE student_id = ?");
                                                 $stmt->bind_param("i", $student_id);
 
-                                                // Execute the query
+                                       
                                                 $stmt->execute();
 
-                                                // Bind result variables
+                                          
                                                 $stmt->bind_result($firstname, $middlename, $lastname);
 
                                                 // Fetch the result
@@ -388,7 +388,7 @@ function is_absolute_path($path) {
                                                     echo "No student found with ID: " . $student_id;
                                                 }
 
-                                                
+
                                                 $stmt->close();
                                                 ?>
 
@@ -405,24 +405,24 @@ function is_absolute_path($path) {
                                                 <?php
                                                 if (isset($_POST['btn_vw'])) {
                                                     $student_id = $_POST['btn_vw'];
-                                                
+
                                                     $stmt = $conn->prepare("SELECT email FROM useraccount WHERE Examinee_ID = (SELECT Examinee_ID FROM student WHERE Student_ID = ?)");
                                                     $stmt->bind_param("i", $student_id);
-                                                
-                                              
+
+
                                                     $stmt->execute();
-                                                
-                                                
+
+
                                                     $stmt->bind_result($email);
-                                                
-                                                  
+
+
                                                     if ($stmt->fetch()) {
                                                         echo $email;
                                                     } else {
                                                         echo "No student found with ID: " . $student_id;
                                                     }
-                                                
-                                                
+
+
                                                     $stmt->close();
                                                 } else {
                                                     echo "Student ID not provided.";
@@ -441,14 +441,14 @@ function is_absolute_path($path) {
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
                                                 <?php
-                                                
+
                                                 $stmt = $conn->prepare("SELECT birthdate FROM personal_details WHERE student_id = ?");
                                                 $stmt->bind_param("i", $student_id);
 
-                                            
+
                                                 $stmt->execute();
 
-                                               
+
                                                 $stmt->bind_result($birthdate);
 
                                                 if ($stmt->fetch()) {
@@ -457,7 +457,7 @@ function is_absolute_path($path) {
                                                     echo "No student found with ID: " . $student_id;
                                                 }
 
-                                         
+
                                                 $stmt->close();
                                                 ?>
 
@@ -472,14 +472,14 @@ function is_absolute_path($path) {
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
                                                 <?php
-                                 
+
                                                 $stmt = $conn->prepare("SELECT age FROM personal_details WHERE student_id = ?");
                                                 $stmt->bind_param("i", $student_id);
 
-                                           
+
                                                 $stmt->execute();
 
-                                         
+
                                                 $stmt->bind_result($age);
 
                                                 if ($stmt->fetch()) {
@@ -488,7 +488,7 @@ function is_absolute_path($path) {
                                                     echo "No student found with ID: " . $student_id;
                                                 }
 
-                                         
+
                                                 $stmt->close();
                                                 ?>
                                             </p>
@@ -502,7 +502,7 @@ function is_absolute_path($path) {
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">
                                                 <?php
-                             
+
                                                 $stmt = $conn->prepare("SELECT fullAddress FROM personal_details WHERE student_id = ?");
                                                 $stmt->bind_param("i", $student_id);
 
@@ -510,7 +510,7 @@ function is_absolute_path($path) {
 
                                                 $stmt->bind_result($fullAddress);
 
-                                       
+
                                                 if ($stmt->fetch()) {
                                                     echo $fullAddress;
                                                 } else {
@@ -536,24 +536,24 @@ function is_absolute_path($path) {
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0">
                                                     <?php
-                                                
+
                                                     $stmt = $conn->prepare("SELECT seniorHighSchool FROM academic_details WHERE student_id = ?");
                                                     $stmt->bind_param("i", $student_id);
 
-                                               
+
                                                     $stmt->execute();
 
-                                     
+
                                                     $stmt->bind_result($seniorHighSchool);
 
-                                   
+
                                                     if ($stmt->fetch()) {
                                                         echo $seniorHighSchool;
                                                     } else {
                                                         echo "No student found with ID: " . $student_id;
                                                     }
 
-                                     
+
                                                     $stmt->close();
                                                     ?>
                                                 </p>
@@ -567,24 +567,22 @@ function is_absolute_path($path) {
                                             <div class="col-sm-9">
                                                 <p class="text-muted mb-0">
                                                     <?php
-                                          
+
                                                     $stmt = $conn->prepare("SELECT strand FROM academic_details WHERE student_id = ?");
                                                     $stmt->bind_param("i", $student_id);
 
-                                                    // Execute the query
+                                                 
                                                     $stmt->execute();
 
-                                                    // Bind result variables
                                                     $stmt->bind_result($strand);
 
-                                                    // Fetch the result
                                                     if ($stmt->fetch()) {
                                                         echo $strand;
                                                     } else {
                                                         echo "No student found with ID: " . $student_id;
                                                     }
 
-                                                    // Close statement and connection
+                                                    
                                                     $stmt->close();
                                                     ?>
                                                 </p>
@@ -605,17 +603,15 @@ function is_absolute_path($path) {
                                                     // Execute the query
                                                     $stmt->execute();
 
-                                                    // Bind result variables
                                                     $stmt->bind_result($GWA);
 
-                                                    // Fetch the result
                                                     if ($stmt->fetch()) {
                                                         echo $GWA;
                                                     } else {
                                                         echo "No student found with ID: " . $student_id;
                                                     }
 
-                                                    // Close statement and connection
+                                                 
                                                     $stmt->close();
                                                     ?>
                                                 </p>
@@ -645,10 +641,9 @@ function is_absolute_path($path) {
                                                             $stmt = $conn->prepare("SELECT guardiansName FROM personal_details WHERE student_id = ?");
                                                             $stmt->bind_param("i", $student_id);
 
-                                                            // Execute the query
+                                                      
                                                             $stmt->execute();
 
-                                                            // Bind result variables
                                                             $stmt->bind_result($guardiansName);
 
                                                             // Fetch the result
@@ -658,7 +653,6 @@ function is_absolute_path($path) {
                                                                 echo "No student found with ID: " . $student_id;
                                                             }
 
-                                                            // Close statement and connection
                                                             $stmt->close();
                                                             ?>
                                                         </p>
@@ -670,26 +664,22 @@ function is_absolute_path($path) {
                                                         <p class="mb-0">Relationship</p>
                                                     </div>
                                                     <div class="col-sm-9">
-                                                    <p class="text-muted mb-0">
+                                                        <p class="text-muted mb-0">
                                                             <?php
-                                                            // Prepare and bind
+                                                           
                                                             $stmt = $conn->prepare("SELECT relationship FROM personal_details WHERE student_id = ?");
                                                             $stmt->bind_param("i", $student_id);
 
-                                                            // Execute the query
                                                             $stmt->execute();
 
-                                                            // Bind result variables
                                                             $stmt->bind_result($relationship);
 
-                                                            // Fetch the result
                                                             if ($stmt->fetch()) {
                                                                 echo $relationship;
                                                             } else {
                                                                 echo "No student found with ID: " . $student_id;
                                                             }
 
-                                                            // Close statement and connection
                                                             $stmt->close();
                                                             ?>
                                                         </p>
@@ -701,7 +691,7 @@ function is_absolute_path($path) {
                                                         <p class="mb-0">Contact Number</p>
                                                     </div>
                                                     <div class="col-sm-9">
-                                                    <p class="text-muted mb-0">
+                                                        <p class="text-muted mb-0">
                                                             <?php
                                                             // Prepare and bind
                                                             $stmt = $conn->prepare("SELECT guardianPhone FROM personal_details WHERE student_id = ?");
@@ -739,9 +729,10 @@ function is_absolute_path($path) {
             </div>
         </div>
         <script>
-            function schedule(){
+            function schedule() {
                 window.location.href = 'AdminSchedule.php';
             }
+
             function toggleSidebar() {
                 var sidebar = document.getElementById('sidebar');
                 var content = document.getElementById('content');

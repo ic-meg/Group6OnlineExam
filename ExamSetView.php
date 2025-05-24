@@ -1,37 +1,38 @@
 <?php
-  session_start();
-   include "dbcon.php";
-
-  
-    $categories = [
-                'admin_math',
-                'admin_logic',
-                'admin_science',
-                'admin_reading_comprehension'
-            ];
-
-       
-        $totalItems = 0;
-
-        
-        foreach ($categories as $tableName) {
-            $sql = "SELECT COUNT(*) AS total_questions FROM $tableName";
-            $result = $conn->query($sql);
-
-            if ($result) {
-                $row = $result->fetch_assoc();
-                $totalItems += $row['total_questions'];
-            }
-        }
-        $_SESSION['totalItems'] = $totalItems;
+session_start();
+include "dbcon.php";
 
 
+$categories = [
+    'admin_math',
+    'admin_logic',
+    'admin_science',
+    'admin_reading_comprehension'
+];
 
-    $conn->close();
+
+$totalItems = 0;
+
+
+foreach ($categories as $tableName) {
+    $sql = "SELECT COUNT(*) AS total_questions FROM $tableName";
+    $result = $conn->query($sql);
+
+    if ($result) {
+        $row = $result->fetch_assoc();
+        $totalItems += $row['total_questions'];
+    }
+}
+$_SESSION['totalItems'] = $totalItems;
+
+
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,51 +48,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-  
+
     <script src="Redirect.js"></script>
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-POE4FppVGG4n4C2u5Jz7f6ZQJq/j53ECM6S/NjGDEClgU/FtIBYyQQWu24lRwhET0N25xwTJAM2Lqg4q8HJfFg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="SPEL.css">
     <link rel="stylesheet" href="ExamSetView.css">
     <link rel="stylesheet" href="View.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
 
 </head>
- <style>
-.medium-box{
-    height: fit-content;
-   
-}
-.radio-label {
-    flex-grow: 1; 
-    min-width: 0; 
-    /* overflow-wrap: break-word;  */
-    white-space: normal; 
-    display: inline-block; 
-    max-width: 10%; 
-}
+<style>
+    .medium-box {
+        height: fit-content;
 
-
-@media (min-width: 576px) {
-    .radio-label {
-        max-width: 50%; 
     }
-}
 
-@media (min-width: 768px) {
     .radio-label {
-        max-width: 60%; 
+        flex-grow: 1;
+        min-width: 0;
+        /* overflow-wrap: break-word;  */
+        white-space: normal;
+        display: inline-block;
+        max-width: 10%;
     }
-}
 
 
- </style>
+    @media (min-width: 576px) {
+        .radio-label {
+            max-width: 50%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .radio-label {
+            max-width: 60%;
+        }
+    }
+</style>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -121,13 +122,13 @@
         <div class="flex-grow-1">
             <div class="header d-flex justify-content-between align-items-center">
                 <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
-                
+
                 <h4>Admin Exam Set</h4>
-                
+
                 <div class="header-icons">
                     <img src="icons8-notification-48.png" alt="Notification Icon" class="notification-icon">
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-                  
+
                     <script src="redirect.js"></script>
                     <button class="Btn">
                         <div class="sign">
@@ -141,10 +142,10 @@
             </div>
             <div class="content" id="content">
                 <!-- CONTENT HERE -->
-                
+
                 <div class="big-box">
                     <div class="header-box">
-                        
+
                         <h2>Exam Set Details</h2>
                         <button class="button-back" onclick="backRedirect()">Back</button>
                     </div>
@@ -154,30 +155,30 @@
                                 <p>Exam Title</p>
                                 <b><span>Entrance Exam</span></b>
                             </div><br>
-                            
+
                             <div class="to-be">
                                 <p>To be taken by:</p>
                                 <b><span>All Courses</span></b>
                             </div><br>
-            
+
                             <div class="total-category">
                                 <p>Total Category</p>
                                 <b><span>4</span></b>
                             </div><br>
 
                             <?php
-                     
+
                             echo '<div class="total-items">';
                             echo '<p>Total items</p>';
                             echo '<b><span>' . htmlspecialchars($totalItems) . '</span></b>';
                             echo '</div><br>';
                             ?>
-                                        
+
                             <div class="duration">
                                 <p>Duration</p>
                                 <b><span>60 mins</span></b>
                             </div><br>
-            
+
                             <div class="status-con">
                                 <p>Status</p>
                                 <b><span>Active</span></b>
@@ -197,7 +198,7 @@
                                     </button> -->
                                     <!-- <button type="button" class="btn btn-secondary custom-btn">+ Add Question</button> -->
                                     <button type="button" class="btn btn-primary addModal" data-toggle="modal" data-target="#Question">
-                                            + Add Question
+                                        + Add Question
                                     </button>
                                 </div>
                             </div>
@@ -205,28 +206,28 @@
                                 <div class="outer-box" id="Math">
                                     <h5 class="selectedCategory">Math</h5>
                                     <div class="questionsContainer">
-                      
+
                                     </div>
                                 </div>
 
                                 <div class="outer-box" id="Logic">
                                     <h5 class="selectedCategory">Logic</h5>
                                     <div class="questionsContainer">
-                             
+
                                     </div>
                                 </div>
 
                                 <div class="outer-box" id="Science">
                                     <h5 class="selectedCategory">Science</h5>
                                     <div class="questionsContainer">
-                                       
+
                                     </div>
                                 </div>
 
                                 <div class="outer-box" id="ReadingComprehension">
                                     <h5 class="selectedCategory">Reading Comprehension</h5>
                                     <div class="questionsContainer">
-                                    
+
                                     </div>
                                 </div>
                             </div> <!-- END OF OUTER BOX -->
@@ -234,121 +235,121 @@
                         </div> <!--END RIGHT BOX -->
                     </div>
                 </div>
-                    <!-- End of Box Layout -->
+                <!-- End of Box Layout -->
             </div><!-- END OF CONTENT -->
         </div><!--END OF FLEXGROW1 -->
     </div><!--END OF DFLEX -->
-                
 
 
-<!-- Modal for adding questions -->
-<div class="modal fade" id="Question" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="QuestionLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title fs-5" id="QuestionLabel">New Question</h3>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="categorySelect" class="form-label">Category</label>
-                <select id="categorySelect" class="form-select" aria-label="Default select example" name="category">
-                    <option selected disabled>Select Category</option>
-                    <option value="Math">Math</option>
-                    <option value="Logic">Logic</option>
-                    <option value="Science">Science</option>
-                    <option value="ReadingComprehension">Reading Comprehension</option>
-                </select>
-                <br>
-                <div class="mb-3">
-                    <label for="questionTextarea" class="form-label">Question</label>
-                    <textarea class="form-control" id="questionTextarea" rows="3" placeholder="Add a question" name="questionText"></textarea>
+
+    <!-- Modal for adding questions -->
+    <div class="modal fade" id="Question" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="QuestionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="QuestionLabel">New Question</h3>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="choices-container">
-                    <label for="choices-text" class="col-form-label">Choices:</label>
-                    <div id="choices">
-                        <!-- This div can dynamically add more choice inputs -->
-                        <div class="form-group">
-                            <textarea class="form-control mb-2" name="choice[]" rows="1" placeholder="Enter choice"></textarea>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="correctChoice" value="0">
-                                <label class="form-check-label">Right Answer</label>
+                <div class="modal-body">
+                    <label for="categorySelect" class="form-label">Category</label>
+                    <select id="categorySelect" class="form-select" aria-label="Default select example" name="category">
+                        <option selected disabled>Select Category</option>
+                        <option value="Math">Math</option>
+                        <option value="Logic">Logic</option>
+                        <option value="Science">Science</option>
+                        <option value="ReadingComprehension">Reading Comprehension</option>
+                    </select>
+                    <br>
+                    <div class="mb-3">
+                        <label for="questionTextarea" class="form-label">Question</label>
+                        <textarea class="form-control" id="questionTextarea" rows="3" placeholder="Add a question" name="questionText"></textarea>
+                    </div>
+                    <div id="choices-container">
+                        <label for="choices-text" class="col-form-label">Choices:</label>
+                        <div id="choices">
+                            
+                            <div class="form-group">
+                                <textarea class="form-control mb-2" name="choice[]" rows="1" placeholder="Enter choice"></textarea>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="correctChoice" value="0">
+                                    <label class="form-check-label">Right Answer</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button class="btn button-back mt-3 mx-auto d-block" onclick="addChoice()">+ Add Choice</button>
                 </div>
-                <button class="btn button-back mt-3 mx-auto d-block" onclick="addChoice()">+ Add Choice</button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveQuestion()">Save Changes</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveQuestion()">Save Changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal for Editing Question -->
-<div class="modal fade" id="editQuestionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="QuestionLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title fs-5" id="QuestionLabel">Edit Question</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="editcategorySelect" class="form-label">Category</label>
-                <select id="editcategorySelect" class="form-select" aria-label="Default select example" name="category" disabled>
-                    <option selected disabled>Select Category</option>
-                    <option value="Math">Math</option>
-                    <option value="Logic">Logic</option>
-                    <option value="Science">Science</option>
-                    <option value="ReadingComprehension">Reading Comprehension</option>
-                </select>
-                <br>
-                <div class="mb-3">
-                    <label for="editquestionTextarea" class="form-label">Question</label>
-                    <textarea class="form-control" id="editquestionTextarea" rows="3" placeholder="Add a question" name="editquestionText"></textarea>
+    <!-- Modal for Editing Question -->
+    <div class="modal fade" id="editQuestionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="QuestionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="QuestionLabel">Edit Question</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div id="editchoices-container">
-                    <label for="choices-text" class="col-form-label">Choices:</label>
-                    <div id="editchoices">
-                        <!-- This div can dynamically add more choice inputs -->
-                        <div class="form-group">
-                            <textarea class="form-control mb-2" name="editchoice[]" rows="1" placeholder="Enter choice"></textarea>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="correctChoice" value="0">
-                                <label class="form-check-label">Right Answer</label>
+                <div class="modal-body">
+                    <label for="editcategorySelect" class="form-label">Category</label>
+                    <select id="editcategorySelect" class="form-select" aria-label="Default select example" name="category" disabled>
+                        <option selected disabled>Select Category</option>
+                        <option value="Math">Math</option>
+                        <option value="Logic">Logic</option>
+                        <option value="Science">Science</option>
+                        <option value="ReadingComprehension">Reading Comprehension</option>
+                    </select>
+                    <br>
+                    <div class="mb-3">
+                        <label for="editquestionTextarea" class="form-label">Question</label>
+                        <textarea class="form-control" id="editquestionTextarea" rows="3" placeholder="Add a question" name="editquestionText"></textarea>
+                    </div>
+                    <div id="editchoices-container">
+                        <label for="choices-text" class="col-form-label">Choices:</label>
+                        <div id="editchoices">
+                          
+                            <div class="form-group">
+                                <textarea class="form-control mb-2" name="editchoice[]" rows="1" placeholder="Enter choice"></textarea>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="correctChoice" value="0">
+                                    <label class="form-check-label">Right Answer</label>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- <button class="btn button-back mt-3 mx-auto d-block" onclick="addChoice()">+ Add Choice</button> -->
                 </div>
-                <!-- <button class="btn button-back mt-3 mx-auto d-block" onclick="addChoice()">+ Add Choice</button> -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEditChanges()">Save Changes</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveEditChanges()">Save Changes</button>
-            </div>
-        </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        </div>
     </div>
-</div>
 
 
 
 
 
-<script>
-function resetModal() {
+    <script>
+        function resetModal() {
 
-    var categorySelect = document.getElementById('categorySelect');
-    categorySelect.selectedIndex = 0;
+            var categorySelect = document.getElementById('categorySelect');
+            categorySelect.selectedIndex = 0;
 
- 
-    var questionTextarea = document.getElementById('questionTextarea');
-    questionTextarea.value = '';
 
-  
-    var choicesContainer = document.getElementById('choices');
-    choicesContainer.innerHTML = `
+            var questionTextarea = document.getElementById('questionTextarea');
+            questionTextarea.value = '';
+
+
+            var choicesContainer = document.getElementById('choices');
+            choicesContainer.innerHTML = `
         <div class="form-group">
             <textarea class="form-control mb-2" name="choice[]" rows="1" placeholder="Enter choice"></textarea>
             <div class="form-check">
@@ -357,22 +358,22 @@ function resetModal() {
             </div>
         </div>
     `;
-}
-    $('#Question').on('hidden.bs.modal', function () {
-        resetModal();
-    });
+        }
+        $('#Question').on('hidden.bs.modal', function() {
+            resetModal();
+        });
 
 
-    function addChoice() {
-    var choicesContainer = document.getElementById('choices');
-    var choiceCount = choicesContainer.children.length;
+        function addChoice() {
+            var choicesContainer = document.getElementById('choices');
+            var choiceCount = choicesContainer.children.length;
 
-    if (choiceCount >= 4) {
-        alert('You can only add 4 choices.');
-        return;
-    }
+            if (choiceCount >= 4) {
+                alert('You can only add 4 choices.');
+                return;
+            }
 
-    var choiceHTML = `
+            var choiceHTML = `
         <div class="form-group">
             <textarea class="form-control mb-2" name="choice[]" rows="1" placeholder="Enter choice"></textarea>
             <div class="form-check">
@@ -382,134 +383,134 @@ function resetModal() {
         </div>
     `;
 
-    choicesContainer.insertAdjacentHTML('beforeend', choiceHTML);
-}
-
-
-    function disableRadioButtons(selectedRadio) {
-    var radioButtons = document.getElementsByName('correctChoice');
-    radioButtons.forEach((radio) => {
-        if (!radio.checked) {
-            radio.disabled = true;
+            choicesContainer.insertAdjacentHTML('beforeend', choiceHTML);
         }
-    });
-}
 
-//Add Question
-function saveQuestion() {
-    var categorySelect = document.getElementById('categorySelect');
-    var selectedCategory = categorySelect.value;
-    var questionText = document.getElementById('questionTextarea').value;
-    var choiceElements = document.getElementsByName('choice[]');
-    var correctChoiceRadio = document.querySelector('input[name="correctChoice"]:checked');
-    
-    if (choiceElements.length !== 4) {
-        alert('Please provide exactly four choices.');
-        return;
-    }
-    
-    if (!correctChoiceRadio) {
-        alert('Please select the correct answer.');
-        return;
-    }
 
-    var choices = [];
-    choiceElements.forEach(function(choice) {
-        choices.push(choice.value);
-    });
-
-  
-    var correctChoiceInput = correctChoiceRadio.closest('.form-group').querySelector('textarea').value.trim();
-
-    if (!correctChoiceInput) {
-        alert('Failed to determine correct answer text.');
-        return;
-    }
-
-    if (selectedCategory && questionText && choices.length > 0) {
-        var data = {
-            category: selectedCategory,
-            questionText: questionText,
-            choices: choices,
-            correctChoiceText: correctChoiceInput  
-        };
-
-        console.log('Data being sent to server:', data);  
-
-        fetch('save_question.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                addQuestionToCategory(selectedCategory, questionText, choices, correctChoiceInput);
-                
-             
-
-                $('#Question.modal').modal('hide').data('bs.modal', null);
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-
-                   alert('Question Successfully inserted.');
-                   window.location.href = 'ExamSetView.php';
-
-       
-            } else {
-                alert('Failed to save question: ' + result.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error saving question:', error);
-            alert('Error saving question: ' + error.message);
-        });
-    }
-}
-
-function fetchQuestions(category) {
-    fetch(`fetch_questions.php?category=${category}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch questions');
-            }
-            return response.json();
-        })
-        .then(questions => {
-            questions.forEach(question => {
-                addQuestionToCategory(question.category, question.questionID, question.questionText, question.choices, question.correctChoiceText);
+        function disableRadioButtons(selectedRadio) {
+            var radioButtons = document.getElementsByName('correctChoice');
+            radioButtons.forEach((radio) => {
+                if (!radio.checked) {
+                    radio.disabled = true;
+                }
             });
-            console.log(`Questions fetched successfully for ${category}`);
-        })
-        .catch(error => {
-            console.error(`Error fetching questions for ${category}:`, error);
-            alert(`Error fetching questions for ${category}: ${error.message}`);
-        });
-}
+        }
+
+        //Add Question
+        function saveQuestion() {
+            var categorySelect = document.getElementById('categorySelect');
+            var selectedCategory = categorySelect.value;
+            var questionText = document.getElementById('questionTextarea').value;
+            var choiceElements = document.getElementsByName('choice[]');
+            var correctChoiceRadio = document.querySelector('input[name="correctChoice"]:checked');
+
+            if (choiceElements.length !== 4) {
+                alert('Please provide exactly four choices.');
+                return;
+            }
+
+            if (!correctChoiceRadio) {
+                alert('Please select the correct answer.');
+                return;
+            }
+
+            var choices = [];
+            choiceElements.forEach(function(choice) {
+                choices.push(choice.value);
+            });
 
 
-fetchQuestions('Math');
-fetchQuestions('Logic');
-fetchQuestions('Science');
-fetchQuestions('ReadingComprehension');
+            var correctChoiceInput = correctChoiceRadio.closest('.form-group').querySelector('textarea').value.trim();
 
-function addQuestionToCategory(category, questionId, questionText, choices, correctChoiceText) {
-    if (!questionId) {
-        console.error('questionId is not defined or invalid.');
-        return;
-    }
+            if (!correctChoiceInput) {
+                alert('Failed to determine correct answer text.');
+                return;
+            }
 
-    if (!choices || choices.length !== 4) {
-        console.error('Choices array is not valid:', choices);
-        return;
-    }
+            if (selectedCategory && questionText && choices.length > 0) {
+                var data = {
+                    category: selectedCategory,
+                    questionText: questionText,
+                    choices: choices,
+                    correctChoiceText: correctChoiceInput
+                };
 
-    var radioGroupName = `radio-group-${category}-${questionId}`;
-    
+                console.log('Data being sent to server:', data);
 
-    var mediumBox = `
+                fetch('save_question.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            addQuestionToCategory(selectedCategory, questionText, choices, correctChoiceInput);
+
+
+
+                            $('#Question.modal').modal('hide').data('bs.modal', null);
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+
+                            alert('Question Successfully inserted.');
+                            window.location.href = 'ExamSetView.php';
+
+
+                        } else {
+                            alert('Failed to save question: ' + result.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error saving question:', error);
+                        alert('Error saving question: ' + error.message);
+                    });
+            }
+        }
+
+        function fetchQuestions(category) {
+            fetch(`fetch_questions.php?category=${category}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch questions');
+                    }
+                    return response.json();
+                })
+                .then(questions => {
+                    questions.forEach(question => {
+                        addQuestionToCategory(question.category, question.questionID, question.questionText, question.choices, question.correctChoiceText);
+                    });
+                    console.log(`Questions fetched successfully for ${category}`);
+                })
+                .catch(error => {
+                    console.error(`Error fetching questions for ${category}:`, error);
+                    alert(`Error fetching questions for ${category}: ${error.message}`);
+                });
+        }
+
+
+        fetchQuestions('Math');
+        fetchQuestions('Logic');
+        fetchQuestions('Science');
+        fetchQuestions('ReadingComprehension');
+
+        function addQuestionToCategory(category, questionId, questionText, choices, correctChoiceText) {
+            if (!questionId) {
+                console.error('questionId is not defined or invalid.');
+                return;
+            }
+
+            if (!choices || choices.length !== 4) {
+                console.error('Choices array is not valid:', choices);
+                return;
+            }
+
+            var radioGroupName = `radio-group-${category}-${questionId}`;
+
+
+            var mediumBox = `
         <div class="medium-box" data-question-id="${questionId}" data-category="${category}">
             <div class="question">
                 <p>${questionText}</p>
@@ -542,151 +543,151 @@ function addQuestionToCategory(category, questionId, questionText, choices, corr
         </div>
     `;
 
-    var outerBox = document.getElementById(category);
-    if (outerBox) {
-        outerBox.insertAdjacentHTML('beforeend', mediumBox);
-    } else {
-        console.error('Outer box container not found.');
-    }
-
-   
-    attachQuestionBoxEventListeners();
-}
+            var outerBox = document.getElementById(category);
+            if (outerBox) {
+                outerBox.insertAdjacentHTML('beforeend', mediumBox);
+            } else {
+                console.error('Outer box container not found.');
+            }
 
 
-function attachQuestionBoxEventListeners() {
-    var editButtons = document.querySelectorAll('.edit-btn');
-    var deleteButtons = document.querySelectorAll('.delete-btn');
-
-    editButtons.forEach(function(btn) {
-        btn.removeEventListener('click', editButtonClickHandler); 
-        btn.addEventListener('click', editButtonClickHandler);
-    });
-
-    deleteButtons.forEach(function(btn) {
-        btn.removeEventListener('click', deleteButtonClickHandler); 
-        btn.addEventListener('click', deleteButtonClickHandler);
-    });
-
-    var dotsButtons = document.querySelectorAll('.dots-btn');
-    dotsButtons.forEach(function(btn) {
-        btn.removeEventListener('click', dotsButtonClickHandler); 
-        btn.addEventListener('click', dotsButtonClickHandler);
-    });
-
-    document.addEventListener('click', closeDropdownsOnClickOutside);
-}
-
-function editButtonClickHandler(event) {
-    event.stopPropagation();
-    var questionId = this.dataset.questionId;
-    var category = this.dataset.category;
-
-    var questionElement = this.closest('.medium-box');
-    populateEditModal(questionElement, questionId, category);
-
-    var editQuestionModal = new bootstrap.Modal(document.getElementById('editQuestionModal'));
-    editQuestionModal.show();
-}
-
-
-
-function deleteQuestion(questionId, category) {
-    if (!confirm('Are you sure you want to delete the question?')) {
-        return;
-    }
-
-    fetch('delete_question.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'question_id=' + encodeURIComponent(questionId) + '&category=' + encodeURIComponent(category),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to delete question');
+            attachQuestionBoxEventListeners();
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Question deleted successfully from the database.');
-       
-        var questionBox = document.querySelector(`.medium-box[data-question-id="${questionId}"][data-category="${category}"]`);
-        if (questionBox) {
-            questionBox.remove();
-        } else {
-            console.error('Question box not found in the UI.');
+
+
+        function attachQuestionBoxEventListeners() {
+            var editButtons = document.querySelectorAll('.edit-btn');
+            var deleteButtons = document.querySelectorAll('.delete-btn');
+
+            editButtons.forEach(function(btn) {
+                btn.removeEventListener('click', editButtonClickHandler);
+                btn.addEventListener('click', editButtonClickHandler);
+            });
+
+            deleteButtons.forEach(function(btn) {
+                btn.removeEventListener('click', deleteButtonClickHandler);
+                btn.addEventListener('click', deleteButtonClickHandler);
+            });
+
+            var dotsButtons = document.querySelectorAll('.dots-btn');
+            dotsButtons.forEach(function(btn) {
+                btn.removeEventListener('click', dotsButtonClickHandler);
+                btn.addEventListener('click', dotsButtonClickHandler);
+            });
+
+            document.addEventListener('click', closeDropdownsOnClickOutside);
         }
-    })
-    .catch(error => {
-        console.error('Error deleting question:', error);
-        alert('Error deleting question: ' + error.message);
-    });
-}
+
+        function editButtonClickHandler(event) {
+            event.stopPropagation();
+            var questionId = this.dataset.questionId;
+            var category = this.dataset.category;
+
+            var questionElement = this.closest('.medium-box');
+            populateEditModal(questionElement, questionId, category);
+
+            var editQuestionModal = new bootstrap.Modal(document.getElementById('editQuestionModal'));
+            editQuestionModal.show();
+        }
 
 
 
-function deleteButtonClickHandler(event) {
-    event.stopPropagation();
+        function deleteQuestion(questionId, category) {
+            if (!confirm('Are you sure you want to delete the question?')) {
+                return;
+            }
 
-    var questionElement = this.closest('.medium-box');
-    var questionId = questionElement.dataset.questionId;
-    var category = questionElement.dataset.category;
+            fetch('delete_question.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'question_id=' + encodeURIComponent(questionId) + '&category=' + encodeURIComponent(category),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to delete question');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Question deleted successfully from the database.');
 
-    console.log('Deleting question with ID:', questionId);
-    console.log('Category:', category);
+                    var questionBox = document.querySelector(`.medium-box[data-question-id="${questionId}"][data-category="${category}"]`);
+                    if (questionBox) {
+                        questionBox.remove();
+                    } else {
+                        console.error('Question box not found in the UI.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting question:', error);
+                    alert('Error deleting question: ' + error.message);
+                });
+        }
 
-    deleteQuestion(questionId, category);
-}
 
 
-function dotsButtonClickHandler(event) {
-    event.stopPropagation();
-    var dropdownMenu = this.nextElementSibling;
-    if (dropdownMenu.classList.contains('show')) {
-        dropdownMenu.classList.remove('show');
-    } else {
-        var allDropdowns = document.querySelectorAll('.dropdown-menu');
-        allDropdowns.forEach(function(dropdown) {
-            dropdown.classList.remove('show');
-        });
-        dropdownMenu.classList.add('show');
-    }
-}
+        function deleteButtonClickHandler(event) {
+            event.stopPropagation();
 
-function closeDropdownsOnClickOutside(event) {
-    if (!event.target.closest('.dropdown')) {
-        var allDropdowns = document.querySelectorAll('.dropdown-menu');
-        allDropdowns.forEach(function(dropdown) {
-            dropdown.classList.remove('show');
-        });
-    }
-}
+            var questionElement = this.closest('.medium-box');
+            var questionId = questionElement.dataset.questionId;
+            var category = questionElement.dataset.category;
 
-function populateEditModal(questionElement) {
+            console.log('Deleting question with ID:', questionId);
+            console.log('Category:', category);
 
-    var questionId = questionElement.getAttribute('data-question-id');
+            deleteQuestion(questionId, category);
+        }
 
-   
-    var questionText = questionElement.querySelector('.question p').textContent.trim();
- 
-    document.getElementById('editquestionTextarea').value = questionText;
 
-   
-    var category = questionElement.closest('.medium-box').getAttribute('data-category');
-    document.getElementById('editcategorySelect').value = category;
+        function dotsButtonClickHandler(event) {
+            event.stopPropagation();
+            var dropdownMenu = this.nextElementSibling;
+            if (dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+            } else {
+                var allDropdowns = document.querySelectorAll('.dropdown-menu');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('show');
+                });
+                dropdownMenu.classList.add('show');
+            }
+        }
 
- 
-    var choicesElements = questionElement.querySelectorAll('.choices .radio-label');
-    var choices = Array.from(choicesElements).map(choice => choice.textContent.trim());
+        function closeDropdownsOnClickOutside(event) {
+            if (!event.target.closest('.dropdown')) {
+                var allDropdowns = document.querySelectorAll('.dropdown-menu');
+                allDropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('show');
+                });
+            }
+        }
 
-    var editChoicesContainer = document.getElementById('editchoices');
-    editChoicesContainer.innerHTML = '';
+        function populateEditModal(questionElement) {
 
-    choices.forEach((choice, index) => {
-        var isChecked = questionElement.querySelector(`input[name^="radio-group"]:checked`).nextSibling.textContent.trim() === choice;
-        var choiceHTML = `
+            var questionId = questionElement.getAttribute('data-question-id');
+
+
+            var questionText = questionElement.querySelector('.question p').textContent.trim();
+
+            document.getElementById('editquestionTextarea').value = questionText;
+
+
+            var category = questionElement.closest('.medium-box').getAttribute('data-category');
+            document.getElementById('editcategorySelect').value = category;
+
+
+            var choicesElements = questionElement.querySelectorAll('.choices .radio-label');
+            var choices = Array.from(choicesElements).map(choice => choice.textContent.trim());
+
+            var editChoicesContainer = document.getElementById('editchoices');
+            editChoicesContainer.innerHTML = '';
+
+            choices.forEach((choice, index) => {
+                var isChecked = questionElement.querySelector(`input[name^="radio-group"]:checked`).nextSibling.textContent.trim() === choice;
+                var choiceHTML = `
             <div class="form-group">
                 <textarea class="form-control mb-2" name="editchoice[]" rows="1" placeholder="Enter choice">${choice}</textarea>
                 <div class="form-check">
@@ -695,54 +696,54 @@ function populateEditModal(questionElement) {
                 </div>
             </div>
         `;
-        editChoicesContainer.insertAdjacentHTML('beforeend', choiceHTML);
-    });
+                editChoicesContainer.insertAdjacentHTML('beforeend', choiceHTML);
+            });
 
 
-    document.getElementById('editQuestionModal').setAttribute('data-question-id', questionId);
- 
-    document.getElementById('editQuestionModal').setAttribute('data-question-element', questionElement.outerHTML);
-}
+            document.getElementById('editQuestionModal').setAttribute('data-question-id', questionId);
 
-function saveEditChanges() {
-    var modal = document.getElementById('editQuestionModal');
-    var questionElementHTML = modal.getAttribute('data-question-element');
-    var questionId = modal.getAttribute('data-question-id');
+            document.getElementById('editQuestionModal').setAttribute('data-question-element', questionElement.outerHTML);
+        }
 
-    
-    if (!questionElementHTML || !questionId) {
-        alert('Error: Question element or ID not found.');
-        return;
-    }
+        function saveEditChanges() {
+            var modal = document.getElementById('editQuestionModal');
+            var questionElementHTML = modal.getAttribute('data-question-element');
+            var questionId = modal.getAttribute('data-question-id');
 
-  
-    var tempDiv = document.createElement('div');
-    tempDiv.innerHTML = questionElementHTML;
-    var questionElement = tempDiv.firstChild;
 
-  
-    if (!(questionElement instanceof Element)) {
-        alert('Error: Invalid question element.');
-        console.error('Invalid question element:', questionElement);
-        return;
-    }
+            if (!questionElementHTML || !questionId) {
+                alert('Error: Question element or ID not found.');
+                return;
+            }
 
-    // Update question text
-    var newQuestionText = document.getElementById('editquestionTextarea').value.trim();
-    questionElement.querySelector('.question p').textContent = newQuestionText;
 
-    // Update choices
-    var newChoices = Array.from(document.querySelectorAll('#editchoices textarea')).map(choice => choice.value.trim());
-    var correctChoiceIndex = document.querySelector('#editchoices input[name="correctChoice"]:checked');
-    var correctIndex = correctChoiceIndex ? correctChoiceIndex.value : null;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = questionElementHTML;
+            var questionElement = tempDiv.firstChild;
 
-    var choicesList = questionElement.querySelector('.choices');
-    choicesList.innerHTML = '';
 
-    newChoices.forEach((choice, index) => {
-        var isChecked = correctIndex !== null && index == correctIndex;
-        var inputName = questionElement.querySelector('.radio-button input') ? questionElement.querySelector('.radio-button input').name : '';
-        var choiceHTML = `
+            if (!(questionElement instanceof Element)) {
+                alert('Error: Invalid question element.');
+                console.error('Invalid question element:', questionElement);
+                return;
+            }
+
+            // Update question text
+            var newQuestionText = document.getElementById('editquestionTextarea').value.trim();
+            questionElement.querySelector('.question p').textContent = newQuestionText;
+
+            // Update choices
+            var newChoices = Array.from(document.querySelectorAll('#editchoices textarea')).map(choice => choice.value.trim());
+            var correctChoiceIndex = document.querySelector('#editchoices input[name="correctChoice"]:checked');
+            var correctIndex = correctChoiceIndex ? correctChoiceIndex.value : null;
+
+            var choicesList = questionElement.querySelector('.choices');
+            choicesList.innerHTML = '';
+
+            newChoices.forEach((choice, index) => {
+                var isChecked = correctIndex !== null && index == correctIndex;
+                var inputName = questionElement.querySelector('.radio-button input') ? questionElement.querySelector('.radio-button input').name : '';
+                var choiceHTML = `
             <li>
                 <div class="radio-container">
                     <div class="radio-wrapper">
@@ -755,109 +756,107 @@ function saveEditChanges() {
                 </div>
             </li>
         `;
-        choicesList.insertAdjacentHTML('beforeend', choiceHTML);
-    });
+                choicesList.insertAdjacentHTML('beforeend', choiceHTML);
+            });
 
 
-    var originalElement = document.querySelector(`.medium-box[data-question-id="${questionId}"]`);
-    if (originalElement) {
-    
-        originalElement.outerHTML = questionElement.outerHTML;
+            var originalElement = document.querySelector(`.medium-box[data-question-id="${questionId}"]`);
+            if (originalElement) {
 
-   
-        var category = document.getElementById('editcategorySelect').value;
+                originalElement.outerHTML = questionElement.outerHTML;
 
-      
-        updateQuestionOnServer(questionId, newQuestionText, newChoices, correctIndex, category, function(success) {
-            if (success) {
-                $('#editQuestionModal.modal').modal('hide').data('bs.modal', null);
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-                
-                alert('Changes saved successfully!');
+
+                var category = document.getElementById('editcategorySelect').value;
+
+
+                updateQuestionOnServer(questionId, newQuestionText, newChoices, correctIndex, category, function(success) {
+                    if (success) {
+                        $('#editQuestionModal.modal').modal('hide').data('bs.modal', null);
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+
+                        alert('Changes saved successfully!');
+                    } else {
+
+                        alert('Error: Unable to save changes.');
+                    }
+                });
             } else {
-               
+
                 alert('Error: Unable to save changes.');
             }
-        });
-    } else {
-      
-        alert('Error: Unable to save changes.');
-    }
-}
-
-function updateQuestionOnServer(questionId, questionText, choices, correctChoiceIndex, category, callback) {
-    const payload = {
-        questionId: questionId,
-        questionText: questionText,
-        choices: choices,
-        correctChoiceIndex: correctChoiceIndex,
-        category: category
-    };
-
-    console.log('Sending payload to server:', payload);
-
-    fetch('update_question.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Server response:', data);
-        if (data.success) {
-            if (typeof callback === 'function') {
-                callback(true); // Indicate success
-            }
-        } else {
-            if (typeof callback === 'function') {
-                callback(false); // Indicate failure
-            }
+
+        function updateQuestionOnServer(questionId, questionText, choices, correctChoiceIndex, category, callback) {
+            const payload = {
+                questionId: questionId,
+                questionText: questionText,
+                choices: choices,
+                correctChoiceIndex: correctChoiceIndex,
+                category: category
+            };
+
+            console.log('Sending payload to server:', payload);
+
+            fetch('update_question.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Server response:', data);
+                    if (data.success) {
+                        if (typeof callback === 'function') {
+                            callback(true); 
+                        }
+                    } else {
+                        if (typeof callback === 'function') {
+                            callback(false); // Indicate failure
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating question:', error);
+                    alert('Error updating question: ' + error.message);
+                    if (typeof callback === 'function') {
+                        callback(false); // Indicate failure
+                    }
+                });
         }
-    })
-    .catch(error => {
-        console.error('Error updating question:', error);
-        alert('Error updating question: ' + error.message);
-        if (typeof callback === 'function') {
-            callback(false); // Indicate failure
-        }
-    });
-}
 
 
-//Sidebar
-       function toggleSidebar() {
+        //Sidebar
+        function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             var content = document.getElementById('content');
             var schoolName = document.querySelector('.SchoolName');
 
             schoolName.style.display = 'none';
-            
+
             sidebar.classList.toggle('show');
             content.classList.toggle('sidebar-show');
 
             if (sidebar.classList.contains('show')) {
-                schoolName.style.display = 'block'; 
+                schoolName.style.display = 'block';
             } else {
-                schoolName.style.display = 'none'; 
+                schoolName.style.display = 'none';
             }
         }
+
         function backRedirect() {
             window.location.href = 'AdminPortalExamSet.php';
         }
+    </script>
 
 
-    
-  
-</script>
+</body>
 
-
-    </body>
-    </html>
+</html>

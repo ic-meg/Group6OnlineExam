@@ -59,7 +59,7 @@ function updatePrograms() {
     }
 }
 
-// Run on page load
+
 document.addEventListener('DOMContentLoaded', updatePrograms);
 
 //Reset and Success Modal
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const successModal = new bootstrap.Modal(document.getElementById('successModal'));
     const resetSuccessModal = new bootstrap.Modal(document.getElementById('resetSuccessModal'));
 
-    // Handle showing the reset modal
+   
     const resetButton = document.querySelector('button[name="saveAdmission"][value="Reset Admission Information"]');
     resetButton.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent default button action
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle reset form submission
     resetForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
         
         // Create a new XMLHttpRequest to handle the reset operation
         const xhr = new XMLHttpRequest();

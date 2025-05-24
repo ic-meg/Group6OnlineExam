@@ -13,7 +13,7 @@ $(document).ready(function () {
         }
     });
 
-    const hasNotifications = true; // Placeholder: Update dynamically
+    const hasNotifications = true; 
 
     if (hasNotifications) {
         $('.notification-dot').show();

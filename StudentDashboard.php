@@ -1,6 +1,8 @@
 <?php 
     include "dashboard.php";
-   
+    include 'student_session.php';
+
+$control_number = $_SESSION['control_number'];
 ?>
 
 <!DOCTYPE html>

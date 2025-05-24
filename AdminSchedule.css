@@ -7,30 +7,28 @@
 .school-logo {
   width: 50px;
   height: auto;
-  margin-right: 10px; 
+  margin-right: 10px;
   cursor: pointer;
 }
 
 .logo-and-campus h4 {
   margin: 0;
-  font-size: 16px; 
+  font-size: 16px;
 }
 
 .bg-dark-green {
-  background-color: #13443E;
+  background-color: #13443e;
 }
 
 .sidebar {
-  
   height: 100vh;
   color: white;
   font-family: var(--font-montserrat);
-  width: 70px; 
+  width: 70px;
   transition: all 0.2s;
-  position: fixed; 
-  z-index: 1; 
+  position: fixed;
+  z-index: 1;
 }
-
 
 .sidebar a {
   color: white;
@@ -45,7 +43,7 @@
 }
 
 .sidebar.show {
-  width: 250px; 
+  width: 250px;
 }
 
 .header {
@@ -53,14 +51,10 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   color: black;
   padding: 10px;
-  
-  
 }
 .header h4 {
   margin-left: 70px;
 }
-
-
 
 .content {
   padding: 20px;
@@ -68,16 +62,15 @@
   margin-left: 70px;
 }
 
-
 .content.sidebar-show {
-  margin-left: calc(70px + 250px); 
+  margin-left: calc(70px + 250px);
   transition: margin-left 0.3s ease;
 }
 
 .logout-button {
   font-family: var(--font-montserrat);
   padding: 8px 16px;
-  background-color: #FFCD4D;
+  background-color: #ffcd4d;
   color: black;
   border: none;
   border-radius: 4px;
@@ -116,36 +109,33 @@
 
 @media (max-width: 768px) {
   .sidebar {
-      position: absolute;
-      left: -70px;
-      width: 70px;
+    position: absolute;
+    left: -70px;
+    width: 70px;
   }
 
   .sidebar.show {
-      left: 0;
-      width: 250px;
+    left: 0;
+    width: 250px;
   }
 
-
   .content {
-      margin-left: 0;
+    margin-left: 0;
   }
 
   .content.sidebar-show {
-      margin-left: 250px;
+    margin-left: 250px;
   }
 
   .btn {
-      background-color: #13443E;
+    background-color: #13443e;
   }
 
   .btn:hover {
-      background-color: #13443E;
+    background-color: #13443e;
   }
 
   .iconsandLabel {
-      font-family: var(--font-montserrat);
+    font-family: var(--font-montserrat);
   }
-
-
 }

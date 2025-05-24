@@ -7,6 +7,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,25 +17,20 @@ session_start();
     <link rel="stylesheet" href="AdminPortalExamSet.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"
-     />
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
     <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
     <style>
         .headExam {
             box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
@@ -44,6 +40,7 @@ session_start();
             height: 43.4px;
             text-align: left;
         }
+
         .logo-and-campus {
             display: flex;
             align-items: center;
@@ -53,27 +50,27 @@ session_start();
         .school-logo {
             width: 50px;
             height: auto;
-            margin-right: 10px; 
+            margin-right: 10px;
             cursor: pointer;
         }
 
         .logo-and-campus h4 {
             margin: 0;
-            font-size: 16px; 
+            font-size: 16px;
         }
 
         .bg-dark-green {
             background-color: #13443E;
         }
-        
+
         .sidebar {
             height: 100vh;
             color: white;
             font-family: var(--font-montserrat);
-            width: 70px; 
+            width: 70px;
             transition: all 0.2s;
-            position: fixed; 
-            z-index: 1; 
+            position: fixed;
+            z-index: 1;
         }
 
 
@@ -90,7 +87,7 @@ session_start();
         }
 
         .sidebar.show {
-            width: 250px; 
+            width: 250px;
         }
 
         .header {
@@ -98,23 +95,24 @@ session_start();
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
             color: black;
             padding: 10px;
-            
+
         }
+
         .header h4 {
             margin-left: 70px;
         }
-        
-        
+
+
 
         .content {
             padding: 20px;
             transition: margin-left 0.3s;
             margin-left: 70px;
         }
-        
+
 
         .content.sidebar-show {
-            margin-left: calc(70px + 250px); 
+            margin-left: calc(70px + 250px);
             transition: margin-left 0.3s ease;
         }
 
@@ -158,35 +156,35 @@ session_start();
             display: inline;
         }
 
-        .col-lg-6{
+        .col-lg-6 {
             padding: 10px;
         }
 
-        #search{
+        #search {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
         }
 
-        #search > h4{
+        #search>h4 {
             margin-right: 10px;
         }
 
-        #search_inpt{
+        #search_inpt {
             border-radius: 10px;
             border: 2px gray solid;
 
         }
-        
-        @media only screen and (max-width: 992px){
-            
-            #search{
+
+        @media only screen and (max-width: 992px) {
+
+            #search {
                 justify-content: flex-start;
                 align-items: flex-start;
             }
-    
-            }
+
+        }
 
 
 
@@ -224,9 +222,9 @@ session_start();
 
 
         }
-
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -268,79 +266,79 @@ session_start();
                         <script src="Redirect.js"></script>
                         <div class="text" onclick="logoutRedirect()">Logout</div>
                     </button>
-                    </div>
                 </div>
-                <div class="content" id="content">
+            </div>
+            <div class="content" id="content">
                 <table class="table" style="text-align: center;">
-                <div class="row">
-                
-                    <thead class="headExam">
-                                <tr>
-                                    <th colspan="6">List of Examinees</th>
-                                </tr>
-                </thead><br> <br><br>
-        
-                 <div class="search-and-table-container">
-                    <div class="group" id="search">
-                        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-                            <g>
-                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                            </g>
-                        </svg>
-                        <input class="input" type="search" placeholder="Search" id="search_inpt"/>
-                    </div>
+                    <div class="row">
 
-                </div>
-                <thead>
-                    <tr>
-                    <th scope="col">Student ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Score</th>
-                    </tr>
-                </thead>
-                <tbody id = 'search_tbl'>
-                    <?php
-                        $sql1 = "SELECT  * FROM student_examination_score";
+                        <thead class="headExam">
+                            <tr>
+                                <th colspan="6">List of Examinees</th>
+                            </tr>
+                        </thead><br> <br><br>
 
-                        $result = $conn->query($sql1);
+                        <div class="search-and-table-container">
+                            <div class="group" id="search">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+                                    <g>
+                                        <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                                    </g>
+                                </svg>
+                                <input class="input" type="search" placeholder="Search" id="search_inpt" />
+                            </div>
 
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
+                        </div>
+                        <thead>
+                            <tr>
+                                <th scope="col">Student ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id='search_tbl'>
+                            <?php
+                            $sql1 = "SELECT  * FROM student_examination_score";
 
-                                echo "<td>" . $row["control_number"] . "</td>";
-                                
-                                $stmt1 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
-                                $stmt1->bind_param("i", $row["control_number"]);
-                                $stmt1->execute();
-                                $result1 = $stmt1->get_result();
+                            $result = $conn->query($sql1);
 
-                                if ($result1->num_rows > 0) {
-                                    while ($row1 = $result1->fetch_assoc()) {
-                                        
-                                        echo "<td>". $row1["username"]."</td>";
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+
+                                    echo "<td>" . $row["control_number"] . "</td>";
+
+                                    $stmt1 = $conn->prepare("SELECT * FROM useraccount WHERE control_number = ?");
+                                    $stmt1->bind_param("i", $row["control_number"]);
+                                    $stmt1->execute();
+                                    $result1 = $stmt1->get_result();
+
+                                    if ($result1->num_rows > 0) {
+                                        while ($row1 = $result1->fetch_assoc()) {
+
+                                            echo "<td>" . $row1["username"] . "</td>";
+                                        }
+                                    } else {
+                                        echo "<td>--</td>";
                                     }
-                                }else {
-                                    echo "<td>--</td>";
-                                }
-                                if($row["status"] == "PASSED" || $row["status"] == "passed"){
-                                    echo '<td><p style = "background-color:green; border-radius: 10px; margin: 5px; color: white;">' . $row["status"] . '</p></td>';
-                                }else{
-                                    echo '<td><p style = "background-color:red; border-radius: 10px; margin: 5px; color: white;">' . $row["status"] . '</p></td>';
-                                }
+                                    if ($row["status"] == "PASSED" || $row["status"] == "passed") {
+                                        echo '<td><p style = "background-color:green; border-radius: 10px; margin: 5px; color: white;">' . $row["status"] . '</p></td>';
+                                    } else {
+                                        echo '<td><p style = "background-color:red; border-radius: 10px; margin: 5px; color: white;">' . $row["status"] . '</p></td>';
+                                    }
 
-                                echo "<td>" . $row["total_score"] . "</td>";
+                                    echo "<td>" . $row["total_score"] . "</td>";
 
-                                echo "</tr>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>--</td></tr>";
                             }
-                        }else {
-                            echo "<tr><td colspan='4'>--</td></tr>";
-                        }
-                    ?>
-                </tbody>
+                            ?>
+                        </tbody>
 
-                </div>
+                    </div>
             </div>
         </div>
         <script>
@@ -350,37 +348,37 @@ session_start();
                 var schoolName = document.querySelector('.SchoolName');
 
                 schoolName.style.display = 'none';
-                
+
                 sidebar.classList.toggle('show');
                 content.classList.toggle('sidebar-show');
 
                 if (sidebar.classList.contains('show')) {
-                    schoolName.style.display = 'block'; 
+                    schoolName.style.display = 'block';
                 } else {
-                    schoolName.style.display = 'none'; 
+                    schoolName.style.display = 'none';
                 }
             }
-          
-const searchInput = document.getElementById('search_inpt');
-const tableBody = document.getElementById('search_tbl');
+
+            const searchInput = document.getElementById('search_inpt');
+            const tableBody = document.getElementById('search_tbl');
 
 
-searchInput.addEventListener('input', function() {
-    const searchValue = this.value.toLowerCase().trim();
+            searchInput.addEventListener('input', function() {
+                const searchValue = this.value.toLowerCase().trim();
 
-    Array.from(tableBody.getElementsByTagName('tr')).forEach(function(row) {
-        const text = row.innerText.toLowerCase();
+                Array.from(tableBody.getElementsByTagName('tr')).forEach(function(row) {
+                    const text = row.innerText.toLowerCase();
 
-     
-        if (text.includes(searchValue)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    });
-});
-            
+
+                    if (text.includes(searchValue)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
         </script>
-        
-    </body>
-    </html>
+
+</body>
+
+</html>

@@ -1,35 +1,14 @@
+<?php
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap">
-    <title>CVSU - Medical History Form</title>
-
-    <link rel="stylesheet" href="medical.css">
-
-</head>
-
-<body> 
-
-
-<?php 
-include 'Header.php';
-include 'dbconn.php'; 
+include 'dbconn.php';
 session_start();
 
-$email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
+if (!isset($_SESSION['user_email'])) {
+    header("Location: ../Signin.php");
+    exit();
+}
 
+$email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
 
 if ($email) {
     $Medications = $PWD = '';
@@ -40,7 +19,7 @@ if ($email) {
     $formError = '';
 
     if (isset($_POST['saveMedical'])) {
-        
+
         if ($_POST['saveMedical'] === "Reset Medical Information") {
             echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -49,7 +28,7 @@ if ($email) {
             });
             </script>";
         } else {
-           
+
             $Medications = isset($_POST['Medications']) ? $_POST['Medications'] : '';
             $PWD = isset($_POST['PWD']) ? $_POST['PWD'] : '';
             $typeOfIllness = isset($_POST['typeOfIllness']) ? $_POST['typeOfIllness'] : [];
@@ -63,7 +42,7 @@ if ($email) {
                 });
                 </script>";
             } else {
-                
+
                 $typeOfIllnessStr = implode(', ', $typeOfIllness);
 
                 $stmt = $conn->prepare("SELECT userID FROM useraccount WHERE email = ?");
@@ -98,7 +77,7 @@ if ($email) {
             }
         }
     } else {
-        
+
         $stmt = $conn->prepare("SELECT * FROM medicalhistory WHERE userID = (SELECT userID FROM useraccount WHERE email = ?)");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -110,24 +89,50 @@ if ($email) {
             $PWD = $row['PWD'];
             $typeOfIllness = explode(', ', $row['typeOFIllness']);
             $isReadOnly = true;
-            $buttonText = "Reset Medical Information"; 
-            $buttonClass = "btn-danger"; 
+            $buttonText = "Reset Medical Information";
+            $buttonClass = "btn-danger";
         }
     }
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap">
+    <title>CVSU - Medical History Form</title>
+
+    <link rel="stylesheet" href="medical.css">
+
+</head>
+
+<body>
+
+
+    <?php include 'Header.php'; ?>
+
     <main>
-        
+
         <form id="medical-form" method="POST">
             <h2>Medical History Information</h2>
             <div class="form-group">
                 <label for="medications">List any medications you are taking:</label>
             </div>
             <div data-mdb-input-init class="form-outline">
-                <textarea class="form-control" id="textAreaExample3" rows="2" name="Medications"   <?= $isReadOnly ? 'disabled' : '' ?>><?php echo htmlspecialchars($Medications) ?></textarea>
+                <textarea class="form-control" id="textAreaExample3" rows="2" name="Medications" <?= $isReadOnly ? 'disabled' : '' ?>><?php echo htmlspecialchars($Medications) ?></textarea>
             </div>
-            
+
             <h3>Do you have any of the following? Kindly put a check:</h3>
             <div class="form-group">
                 <input type="checkbox" id="allergy" name="typeOfIllness[]" value="Allergy"
@@ -177,8 +182,8 @@ if ($email) {
                     <?php echo $isReadOnly ? 'disabled' : ''; ?>>
                 <label for="others">Others</label>
             </div>
-            <label for="inputState" class="form-label" >*Are you a PWD?</label>
-            <select  class="form-control" data-mdb-select-init name="PWD" <?= $isReadOnly ? 'disabled' : '' ?>>
+            <label for="inputState" class="form-label">*Are you a PWD?</label>
+            <select class="form-control" data-mdb-select-init name="PWD" <?= $isReadOnly ? 'disabled' : '' ?>>
                 <option value=""><?php echo htmlspecialchars($PWD) ?></option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -188,80 +193,81 @@ if ($email) {
         </form>
     </main>
     <!-- Modal HTML -->
-<div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resetModalLabel">Confirm Reset</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to reset the personal information? This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <form method="POST" id="resetForm">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="saveMedical" value="Reset Medical Information" class="btn btn-danger">Reset</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Success Modal HTML -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Success</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modalBodyContent">
-                Your personal information has been saved successfully.
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="goToApplicationForm">OK</button>
+    <div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="resetModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resetModalLabel">Confirm Reset</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to reset the personal information? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" id="resetForm">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" name="saveMedical" value="Reset Medical Information" class="btn btn-danger">Reset</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Reset Success Modal HTML -->
-<div class="modal fade" id="resetSuccessModal" tabindex="-1" aria-labelledby="resetSuccessModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resetSuccessModalLabel">Reset Successful</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Your personal information has been successfully reset.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="goToApplicationFormAfterReset">OK</button>
+    <!-- Success Modal HTML -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBodyContent">
+                    Your personal information has been saved successfully.
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="goToApplicationForm">OK</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Error Modal -->
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="errorModalLabel">Error</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <?php echo htmlspecialchars($formError); ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script src="medical.js"></script>
+    <!-- Reset Success Modal HTML -->
+    <div class="modal fade" id="resetSuccessModal" tabindex="-1" aria-labelledby="resetSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resetSuccessModalLabel">Reset Successful</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Your personal information has been successfully reset.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="goToApplicationFormAfterReset">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php echo htmlspecialchars($formError); ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="medical.js"></script>
 </body>
+
 </html>

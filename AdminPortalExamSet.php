@@ -24,6 +24,7 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,12 +36,12 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
     <script src="Redirect.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,900;1,500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap" />
     <style>
         .floating-label {
             position: relative;
@@ -61,8 +62,8 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
             color: #999;
         }
 
-        .floating-label input:focus + label,
-        .floating-label input:not(:placeholder-shown) + label {
+        .floating-label input:focus+label,
+        .floating-label input:not(:placeholder-shown)+label {
             top: 0.35rem;
             left: 0.75rem;
             font-size: 0.75rem;
@@ -71,10 +72,10 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
 
         .custom-btn {
             background-color: var(--color-darkslategray-100);
-            color: #fff; 
+            color: #fff;
             border-color: #6c757d;
         }
-    
+
 
         .logo-and-campus {
             display: flex;
@@ -132,9 +133,11 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
             padding: 10px;
 
         }
+
         .header h4 {
             margin-left: 70px;
         }
+
         .header h4 {
             font-family: var(--font-montserrat);
         }
@@ -225,6 +228,7 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
         }
     </style>
 </head>
+
 <body>
     <div class="d-flex">
         <div class="sidebar bg-dark-green" id="sidebar">
@@ -256,9 +260,9 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
                 <button class="btn btn-primary d-md-none" onclick="toggleSidebar()">☰</button>
                 <h4>Admin Exam Set</h4>
                 <div class="header-icons">
-                
+
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-   
+
                     <script src="redirect.js"></script>
                     <button class="Btn">
                         <div class="sign">
@@ -280,80 +284,80 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
                         </svg>
                         <input class="input" type="search" placeholder="Search" />
                     </div> -->
-                    
-                        <table class="table table-striped">
-                            <thead class="headExam">
-                                <tr>
-                                    <th colspan="6">Exam Set List</th>
-                                </tr>
-                            </thead>
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Date Created</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Information</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><?php echo $row['exam_id'] ?></th>
-                                    <td><?php echo $row['date'] ?></td>
-                                    <td><?php echo $row['title'] ?></td>
-                                    <td>Duration: <?php echo $row['duration']?> mins<br>Total items: <?php echo htmlspecialchars($totalItems); ?></td>
-                                    <td class="active">Active</td>
-                                    
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <a class="dropdown-item" href="ExamSetView.php">View</a>
-                                                <a class="dropdown-item" href="#" id="editExamSet1">Edit</a>
-                                                
-                          
-                                            </div>
-                                        </div>
-                                    </td>
-                            </tbody>
-                        </table>
-                    
-                </div>
+
+                <table class="table table-striped">
+                    <thead class="headExam">
+                        <tr>
+                            <th colspan="6">Exam Set List</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date Created</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Information</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><?php echo $row['exam_id'] ?></th>
+                            <td><?php echo $row['date'] ?></td>
+                            <td><?php echo $row['title'] ?></td>
+                            <td>Duration: <?php echo $row['duration'] ?> mins<br>Total items: <?php echo htmlspecialchars($totalItems); ?></td>
+                            <td class="active">Active</td>
+
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle custom-btn" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Action
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <a class="dropdown-item" href="ExamSetView.php">View</a>
+                                        <a class="dropdown-item" href="#" id="editExamSet1">Edit</a>
+
+
+                                    </div>
+                                </div>
+                            </td>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Edit Exam Set Modal-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" action="update_exam_set.php"> <!-- Ensure correct action -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Exam Set</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="examSetTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="examSetTitle" name="examSetTitle" placeholder="Enter Title" required>
+                        </div>
+                        <input type="hidden" id="exam_id" name="exam_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="saveChangesBtn" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-<!--Edit Exam Set Modal-->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form method="post" action="update_exam_set.php"> <!-- Ensure correct action -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Exam Set</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="examSetTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="examSetTitle" name="examSetTitle" placeholder="Enter Title" required>
-                    </div>
-                    <input type="hidden" id="exam_id" name="exam_id"> 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="saveChangesBtn" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
- <!--Delete Exam Set Modal-->
+    <!--Delete Exam Set Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -377,7 +381,6 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
 
 
     <script>
-
         function toggleSidebar() {
             var sidebar = document.getElementById('sidebar');
             var content = document.getElementById('content');
@@ -395,15 +398,15 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
             }
         }
         $(document).ready(function() {
-        $('#editExamSet1').click(function(e) {
-            e.preventDefault();
-            var exam_id = $(this).data('exam-id'); 
-            var examSetTitle = $(this).data('exam-title'); 
-            $('#exam_id').val(exam_id); 
-            $('#examSetTitle').val(examSetTitle); 
-            $('#editModal').modal('show');
+            $('#editExamSet1').click(function(e) {
+                e.preventDefault();
+                var exam_id = $(this).data('exam-id');
+                var examSetTitle = $(this).data('exam-title');
+                $('#exam_id').val(exam_id);
+                $('#examSetTitle').val(examSetTitle);
+                $('#editModal').modal('show');
+            });
         });
-    });
 
         $(document).ready(function() {
             $('#deleteExamSet1').click(function(e) {
@@ -412,6 +415,7 @@ $totalItems = isset($_SESSION['totalItems']) ? $_SESSION['totalItems'] : 'N/A';
             });
         });
     </script>
-    
+
 </body>
+
 </html>
