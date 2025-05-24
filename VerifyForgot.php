@@ -22,17 +22,19 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 </head>
 <style>
-      .eye-icon {
-            top: 24px;
-            position: absolute;
-            right: 30px;
-            cursor: pointer;
-            color: #888;
-            display: none;
-        }
-        .eye-icon:hover {
-            color: #000;
-        }
+  .eye-icon {
+    top: 24px;
+    position: absolute;
+    right: 30px;
+    cursor: pointer;
+    color: #888;
+    display: none;
+  }
+
+  .eye-icon:hover {
+    color: #000;
+  }
+
   .welcome {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.8);
@@ -93,19 +95,19 @@
           <div class="responsive" style="margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
             <div class="admin-username-wrapper">
               <div class="admin-username1">
-                <form action="/Group6OnlineExam/VerifyForgot.php" method="POST">
+                <form action="/OnlineExam/VerifyForgot.php" method="POST">
                   <input required type="text" name="GetControlNumber" autocomplete="off" class="admin-username-item" disabled>
                   <?php
-include "dbcon.php";
-session_start();
+                  include "dbcon.php";
+                  session_start();
 
-if (isset($_POST['update_password'])) {
-    $GetControlNumber = $_SESSION['GetControlNumber'];
-    $NewPassword = $_POST['NewPassword'];
+                  if (isset($_POST['update_password'])) {
+                    $GetControlNumber = $_SESSION['GetControlNumber'];
+                    $NewPassword = $_POST['NewPassword'];
 
 
-    if (strlen($NewPassword) < 8 || !preg_match('/[A-Z]/', $NewPassword) || !preg_match('/[a-z]/', $NewPassword) || !preg_match('/[0-9]/', $NewPassword) || !preg_match('/[^a-zA-Z0-9]/', $NewPassword)) {
-        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    if (strlen($NewPassword) < 8 || !preg_match('/[A-Z]/', $NewPassword) || !preg_match('/[a-z]/', $NewPassword) || !preg_match('/[0-9]/', $NewPassword) || !preg_match('/[^a-zA-Z0-9]/', $NewPassword)) {
+                      echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             Swal.fire({
                 title: "Warning",
@@ -113,16 +115,16 @@ if (isset($_POST['update_password'])) {
                 icon: "warning"
             });
         </script>';
-    } else {
+                    } else {
 
-        // $hashedPassword = password_hash($NewPassword, PASSWORD_DEFAULT);
+                      // $hashedPassword = password_hash($NewPassword, PASSWORD_DEFAULT);
 
-  
-        $updateQuery = "UPDATE useraccount SET password = ? WHERE control_number = ?";
-        $stmtUpdate = $conn->prepare($updateQuery);
-        $stmtUpdate->bind_param("ss", $NewPassword, $GetControlNumber);
-        if ($stmtUpdate->execute()) {
-            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                      $updateQuery = "UPDATE useraccount SET password = ? WHERE control_number = ?";
+                      $stmtUpdate = $conn->prepare($updateQuery);
+                      $stmtUpdate->bind_param("ss", $NewPassword, $GetControlNumber);
+                      if ($stmtUpdate->execute()) {
+                        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
                 Swal.fire({
                     title: "Success",
@@ -134,8 +136,8 @@ if (isset($_POST['update_password'])) {
                     }
                 });
             </script>';
-        } else {
-            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                      } else {
+                        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
                 Swal.fire({
                     title: "Error",
@@ -143,28 +145,28 @@ if (isset($_POST['update_password'])) {
                     icon: "error"
                 });
             </script>';
-        }
-        $stmtUpdate->close();
-    }
-    $conn->close();
-}
-?>
+                      }
+                      $stmtUpdate->close();
+                    }
+                    $conn->close();
+                  }
+                  ?>
                   <?php
-           
-                if (isset($_SESSION['GetControlNumber'])) {
+
+                  if (isset($_SESSION['GetControlNumber'])) {
                     $GetControlNumber = $_SESSION['GetControlNumber'];
-                ?>
+                  ?>
                     <label class="username2" style="margin-left: -70px; top:20px;"><?php echo $GetControlNumber; ?></label>
-                <?php
-                }
-                ?>
+                  <?php
+                  }
+                  ?>
                   <div class="value-input">Value Input</div>
                   <div class="admin-username-inner"></div>
                   <div class="admin-username-child1"></div>
                   <div class="admin-username-child2"></div>
               </div>
             </div>
-        
+
             <div class="admin-username-container">
               <div class="admin-username1">
                 <input required type="password" name="NewPassword" id="password" autocomplete="off" class="admin-username-item">
@@ -172,7 +174,7 @@ if (isset($_POST['update_password'])) {
                 <div class="eye-icon" id="togglePassword">
                   <i class="fas fa-eye" id="eyeOpen"></i>
                   <i class="fas fa-eye-slash" id="eyeClosed" style="display: none;"></i>
-              </div>
+                </div>
                 <div class="value-input">Value Input</div>
                 <div class="admin-username-inner"></div>
                 <div class="admin-username-child1"></div>
@@ -189,104 +191,7 @@ if (isset($_POST['update_password'])) {
       </div>
     </div>
   </div>
- 
-  <?php 
 
-// include "dbcon.php";
-
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-
-// require 'C:/Users/Meg Angeline Fabian/phpmailer/vendor/autoload.php';
-
-// function sendemail_verify($EmailAddress, $verification_code){
-//     $subject = "Email Verification";
-//     $message = "Hi<br><br>";
-//     $message .= "Your verification code is:<br>";
-//     $message .= "<strong>$verification_code</strong><br><br>";
-//     $message .= "If you did not sign up for our service, please ignore this email.<br><br>";
-//     $message .= "Best regards,<br>Cavite State University - Imus Campus";
-
-//     $mail = new PHPMailer(true);
-//     try {
-//         $mail->isSMTP();
-//         $mail->Host = 'smtp.gmail.com';
-//         $mail->SMTPAuth = true;
-//         $mail->Username = 'fabian.megangeline2003@gmail.com'; // your Gmail address
-//         $mail->Password = 'upqj akck ojis wmsa'; // your Gmail password
-//         $mail->SMTPSecure = 'ssl';
-//         $mail->Port = 465;
-
-//         $mail->setFrom('megangeline08@gmail.com', 'Online Entrance Exam');
-//         $mail->addAddress($EmailAddress);
-
-//         $mail->isHTML(true);
-//         $mail->Subject = $subject;
-//         $mail->Body = $message;
-
-//         $mail->send();
-
-//     } catch (Exception $e) {
-//         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-//     }
-// }
-
-// if (isset($_POST['sendCode'])) {
-//     $EmailAddress = $_POST['EmailAddress'];
-
-//     $check_query = "SELECT * FROM useraccount WHERE email = '$EmailAddress'";
-//     $check_result = mysqli_query($conn, $check_query);
-
-//     if(mysqli_num_rows($check_result)){
-//       echo "<script>
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Email Exists!',
-//         text: 'Email already exists. Please use another email.',
-//         confirmButtonColor: '#448b4f',
-//         confirmButtonTextColor: '#ffffff'
-//       }).then(function() {
-//         window.location.href = 'Signup.php';
-//       });
-//       </script>";
-//     }else{
-//       $verification_code = rand(100000, 999999); 
-
-//       $insert_query = "INSERT INTO useraccount (email, verification_code) VALUES ('$EmailAddress', '$verification_code')";
-//       $insert_run = mysqli_query($conn, $insert_query);
-  
-//       if ($insert_run) {
-//         session_start();
-//         $_SESSION['verification_email'] = $EmailAddress;
-  
-//         sendemail_verify($EmailAddress, $verification_code);
-//         echo "<script>
-//         Swal.fire({
-//           icon: 'success',
-//           title: 'Verification Code Sent!',
-//           text: 'Verification code is sent to your email address.',
-//           confirmButtonColor: '#448b4f',
-//           confirmButtonTextColor: '#ffffff'
-//         }).then(function() {
-//           window.location.href = 'Verification.php';
-//         });
-//         </script>";
-//         header("Location: Verification.php");
-//         exit;  
-//       } else {
-//         echo "<script>
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Error!',
-//           html: '<div style=\"font-size: 18px; padding: 20px;\">Failed to store the verification code.</div>',
-//           confirmButtonTextColor: '#ffffff'
-//         })
-//         </script>";
-//       }
-//     }
-// }
-?>
 
   <script>
     const passwordField = document.getElementById('password');
@@ -294,26 +199,26 @@ if (isset($_POST['update_password'])) {
     const eyeClosed = document.getElementById('eyeClosed');
     const eyeIcon = document.getElementById('togglePassword');
 
-    passwordField.addEventListener('input', function () {
-        if (passwordField.value.length > 0) {
-            eyeIcon.style.display = 'inline';
-        } else {
-            eyeIcon.style.display = 'none';
-        }
+    passwordField.addEventListener('input', function() {
+      if (passwordField.value.length > 0) {
+        eyeIcon.style.display = 'inline';
+      } else {
+        eyeIcon.style.display = 'none';
+      }
     });
 
-    eyeIcon.addEventListener('click', function () {
-        if (passwordField.type === 'password') {
-            passwordField.type = 'text';
-            eyeOpen.style.display = 'none';
-            eyeClosed.style.display = 'inline';
-        } else {
-            passwordField.type = 'password';
-            eyeOpen.style.display = 'inline';
-            eyeClosed.style.display = 'none';
-        }
+    eyeIcon.addEventListener('click', function() {
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        eyeOpen.style.display = 'none';
+        eyeClosed.style.display = 'inline';
+      } else {
+        passwordField.type = 'password';
+        eyeOpen.style.display = 'inline';
+        eyeClosed.style.display = 'none';
+      }
     });
-</script>
+  </script>
 
   <script src="jquery.min.js"></script>
   <script src="bootstrap.min.js"></script>

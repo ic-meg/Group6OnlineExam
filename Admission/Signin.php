@@ -72,12 +72,13 @@
     require_once 'C:\xampp\htdocs\vendor/autoload.php';
 
     // init configuration
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); 
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+ 
     $dotenv->load();
     
-    $clientID = $_ENV['GOOGLE_CLIENT_ID'];
-    $clientSecret = $_ENV['GOOGLE_CLIENT_SECRET'];
-    $redirectUri = $_ENV['REDIRECT_URI'];
+    $clientID = $_ENV['CLIENT_ID'];
+    $clientSecret = $_ENV['CLIENT_SECRET'];
+    $redirectUri = $_ENV['REDIRECT_URL'];
     
 
     // create Client Request to access Google API
