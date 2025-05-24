@@ -39,5 +39,7 @@ This project is a complete online solution for managing student admissions and e
 composer require dompdf/dompdf
 composer require phpmailer/phpmailer
 composer require phpoffice/phpspreadsheet
+composer require vlucas/phpdotenv
+
 
 ```
