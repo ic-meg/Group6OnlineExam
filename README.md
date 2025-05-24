@@ -35,3 +35,7 @@ This project is a complete online solution for managing student admissions and e
 - JavaScript – Interactivity (optional extensions)
 - SweetAlert2 – Alert dialogs and prompts
 
+`bash 
+composer require dompdf/dompdf
+composer require phpmailer/phpmailer
+composer require phpoffice/phpspreadsheet
